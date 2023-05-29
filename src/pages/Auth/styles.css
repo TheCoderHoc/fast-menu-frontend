@@ -1,0 +1,46 @@
+.auth {}
+
+.auth-header {
+    background-color: var(--dark-color);
+    padding: 1.8rem 0;
+}
+
+.auth-header-container {
+    margin: auto;
+    max-width: 90%;
+}
+
+.auth-content, .auth-footer{
+    margin: auto;
+    width: 32rem;
+}
+
+.auth-content {
+    margin-top: 2.5rem;
+}
+
+.auth-content .btn-default {
+    margin-bottom: 1rem;
+}
+
+.auth-title-text {
+    font-size: 2.4rem;
+    line-height: 1.3em;
+    margin-top: 1.6rem;
+}
+
+.auth-form {
+    margin-top: 1rem;
+}
+
+.auth-footer {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 330px){
+    .auth-content {
+        padding: 1rem;
+        width: 100%;
+    }
+}
