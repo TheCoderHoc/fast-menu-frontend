@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Spin } from "antd";
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
 import passwordValidator from "password-validator";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
+import { setMessage } from "../redux/authSlice";
 
-const Signup = ({ onChangeActiveTab, onSetMessage }) => {
+const Signup = ({ onChangeActiveTab }) => {
+    const auth = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [loading, setLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState({
-        fullName: "",
-        email: "",
-        password: "",
-    });
+
+    useEffect(() => {
+        if (auth.user) {
+            navigate("/user/dashboard");
+        }
+    }, [auth.user]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch(setMessage(""));
+        }, 3000);
+    }, [auth.message]);
 
     const {
         register,
@@ -112,20 +126,22 @@ const Signup = ({ onChangeActiveTab, onSetMessage }) => {
             setLoading(false);
 
             if (error) {
-                onSetMessage(error);
+                dispatch(setMessage(error));
                 return;
             }
 
-            onSetMessage(success);
+            dispatch(setMessage(success));
 
             onChangeActiveTab("2");
         } catch (error) {
             setLoading(false);
 
-            onSetMessage(
-                error.message === "Failed to fetch"
-                    ? "Please check your internet connection"
-                    : error.message
+            dispatch(
+                setMessage(
+                    error.message === "Failed to fetch"
+                        ? "Please check your internet connection"
+                        : error.message
+                )
             );
         }
     };

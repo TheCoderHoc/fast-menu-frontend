@@ -1,10 +1,29 @@
-import React from "react";
-import { Button } from "antd";
+import React, { useEffect } from "react";
+import { Button, Spin } from "antd";
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
+import { login, setMessage } from "../redux/authSlice";
 
 const Login = () => {
+    const auth = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (auth.user) {
+            navigate("/user/dashboard");
+        }
+    }, [auth.user]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch(setMessage(""));
+        }, 3000);
+    }, [auth.message]);
+
     const {
         register,
         handleSubmit,
@@ -35,8 +54,7 @@ const Login = () => {
         );
 
         if (isError) {
-            // submit the form data to backend for processing
-            // redirect the user to the dashboard page
+            dispatch(login(data));
         }
     };
 
@@ -76,7 +94,7 @@ const Login = () => {
                     className="btn btn-dark"
                     htmlType="submit"
                 >
-                    Login
+                    {auth.loading ? <Spin size="small" /> : "Login"}
                 </Button>
             </form>
         </>

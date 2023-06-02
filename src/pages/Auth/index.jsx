@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { Button, Divider, Tabs } from "antd";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillApple } from "react-icons/ai";
 import { AiFillFacebook } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import Logo from "../../components/Logo";
 import Signup from "../../layouts/Signup";
 import Login from "../../layouts/Login";
+import { setMessage } from "../../redux/authSlice";
 
 const Auth = () => {
-    const [message, setMessage] = useState("");
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("jwt");
+
+    if (user && token) {
+        return <Navigate to="/user/dashboard" />;
+    }
+
+    const auth = useSelector((state) => state.auth);
     const [activeKey, setActiveKey] = useState("1");
 
     const onChange = (key) => {
         setActiveKey(key);
     };
-
-    useEffect(() => {
-        setTimeout(() => {
-            setMessage("");
-        }, 3000);
-    }, [message]);
 
     const tabs = [
         {
@@ -46,9 +50,9 @@ const Auth = () => {
                 <div className="auth-header-container">
                     <Logo />
 
-                    {message && (
+                    {auth.message && (
                         <p className="text-white auth-header-message">
-                            {message}
+                            {auth.message}
                         </p>
                     )}
 

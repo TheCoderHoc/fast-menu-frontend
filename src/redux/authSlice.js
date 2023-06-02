@@ -5,13 +5,19 @@ const initialState = {
     message: "",
     user: null,
     token: "",
-    isAuthenticated: false,
-    redirect: false,
 };
 
 const authSlice = createSlice({
     name: "auth",
     initialState,
+    reducers: {
+        setMessage: (state, action) => {
+            state.message = action.payload;
+        },
+        setUser: (state, action) => {
+            state.user = action.payload.user;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(login.pending, (state) => {
             state.loading = true;
@@ -41,7 +47,10 @@ const authSlice = createSlice({
 
         builder.addCase(login.rejected, (state, action) => {
             state.loading = false;
-            state.message = action.error.message;
+            state.message =
+                action.error.message === "Failed to fetch"
+                    ? "Please check your internet connection."
+                    : action.error.message;
         });
     },
 });
@@ -65,3 +74,4 @@ export const login = createAsyncThunk(
 );
 
 export default authSlice.reducer;
+export const { setMessage } = authSlice.actions;
