@@ -10,6 +10,10 @@ const App = () => {
         <Provider store={store}>
             <Routes>
                 <Route path="/user/auth" element={<Auth />} />
+                <Route
+                    path="/user/dashboard"
+                    element={<h2>User Dashboard</h2>}
+                />
             </Routes>
         </Provider>
     );

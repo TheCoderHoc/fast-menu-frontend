@@ -25,7 +25,7 @@ const authSlice = createSlice({
         });
 
         builder.addCase(login.fulfilled, (state, action) => {
-            const { error, user, token } = action.payload;
+            const { error, userObject: user, token } = action.payload;
 
             state.loading = false;
 
@@ -36,7 +36,6 @@ const authSlice = createSlice({
 
             state.user = user;
             state.token = token;
-            state.isAuthenticated = true;
 
             // Store the user details in local storage
             localStorage.setItem("user", JSON.stringify(user));
