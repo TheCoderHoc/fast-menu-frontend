@@ -1,11 +1,18 @@
-import React from "react";
-import { Button } from "antd";
+import React, { useState } from "react";
+import { Button, Spin } from "antd";
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
 import passwordValidator from "password-validator";
 import Input from "../components/Input";
 
-const Signup = () => {
+const Signup = ({ onChangeActiveTab, onSetMessage }) => {
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState({
+        fullName: "",
+        email: "",
+        password: "",
+    });
+
     const {
         register,
         handleSubmit,
@@ -80,8 +87,46 @@ const Signup = () => {
         );
 
         if (isError) {
-            // submit the form data to backend for processing
-            console.log(data);
+            setLoading(true);
+
+            signup(data);
+        }
+    };
+
+    const signup = async ({ fullName, email, password }) => {
+        try {
+            const response = await fetch("http://localhost:3000/user/signup", {
+                method: "POST",
+                body: JSON.stringify({
+                    fullName,
+                    email,
+                    password,
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const { error, success } = await response.json();
+
+            setLoading(false);
+
+            if (error) {
+                onSetMessage(error);
+                return;
+            }
+
+            onSetMessage(success);
+
+            onChangeActiveTab("2");
+        } catch (error) {
+            setLoading(false);
+
+            onSetMessage(
+                error.message === "Failed to fetch"
+                    ? "Please check your internet connection"
+                    : error.message
+            );
         }
     };
 
@@ -144,7 +189,7 @@ const Signup = () => {
                     className="btn btn-dark"
                     htmlType="submit"
                 >
-                    Sign Up
+                    {loading ? <Spin size="small" /> : "Sign Up"}
                 </Button>
             </form>
         </>

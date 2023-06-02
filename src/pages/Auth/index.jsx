@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 import { Button, Divider, Tabs } from "antd";
 import { FcGoogle } from "react-icons/fc";
@@ -9,11 +9,29 @@ import Signup from "../../layouts/Signup";
 import Login from "../../layouts/Login";
 
 const Auth = () => {
+    const [message, setMessage] = useState("");
+    const [activeKey, setActiveKey] = useState("1");
+
+    const onChange = (key) => {
+        setActiveKey(key);
+    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            setMessage("");
+        }, 3000);
+    }, [message]);
+
     const tabs = [
         {
             key: "1",
             label: "Sign Up",
-            children: <Signup />,
+            children: (
+                <Signup
+                    onChangeActiveTab={onChange}
+                    onSetMessage={(message) => setMessage(message)}
+                />
+            ),
         },
         {
             key: "2",
@@ -27,17 +45,27 @@ const Auth = () => {
             <header className="auth-header">
                 <div className="auth-header-container">
                     <Logo />
+
+                    {message && (
+                        <p className="text-white auth-header-message">
+                            {message}
+                        </p>
+                    )}
+
+                    <div className="auth-invisible"></div>
                 </div>
             </header>
 
             <main className="auth-content">
                 <Tabs
-                    defaultActiveKey="1"
+                    defaultActiveKey={activeKey}
                     items={tabs}
                     centered
+                    onChange={onChange}
                     size="middle"
                     tabBarGutter={100}
                     destroyInactiveTabPane
+                    activeKey={activeKey}
                 />
 
                 <Divider>or</Divider>
@@ -72,7 +100,6 @@ const Auth = () => {
                     Continue with Facebook
                 </Button>
             </main>
-
         </div>
     );
 };

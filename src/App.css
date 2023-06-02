@@ -2,6 +2,14 @@
     color: var(--primary-color);
 }
 
+.text-white {
+    color: #ffffff;
+}
+
+.text-center {
+    text-align: center;
+}
+
 .btn {
     align-items: center;
     display: flex;

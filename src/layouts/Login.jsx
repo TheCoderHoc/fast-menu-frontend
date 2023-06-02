@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "antd";
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
-import passwordValidator from "password-validator";
 import Input from "../components/Input";
 
 const Login = () => {
@@ -30,31 +29,6 @@ const Login = () => {
         errMsg.password = "Please enter your password above.";
     }
 
-    if (errors.password?.type === "minLength") {
-        errMsg.password = "Password must be a minimum of 6 characters.";
-    }
-
-    let schema = new passwordValidator();
-
-    schema
-        .has()
-        .lowercase()
-        .uppercase()
-        .has()
-        .digits(1)
-        .has()
-        .symbols(1)
-        .is()
-        .min(6)
-        .has()
-        .not()
-        .spaces();
-
-    if (watch("password") && !schema.validate(watch("password"))) {
-        errMsg.password =
-            "Password must contain a lowercase, uppercase, at least one digit and a symbol, and should not coontain space.";
-    }
-
     const onSubmit = (data) => {
         const isError = Object.values(errMsg).every(
             (error) => error === null || error === ""
@@ -62,7 +36,7 @@ const Login = () => {
 
         if (isError) {
             // submit the form data to backend for processing
-            console.log(data);
+            // redirect the user to the dashboard page
         }
     };
 
