@@ -1,7 +1,15 @@
 .logo {
-    color: #ffffff;
+    font-size: 2.5rem;
 }
 
-.logo {
-    font-size: 2.5rem;
+.logo-primary {
+    color: #fff;
+}
+
+.logo-primary span {
+    color: var(--primary-color);
+}
+
+.logo-default {
+    color: var(--dark-color);
 }

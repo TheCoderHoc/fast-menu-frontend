@@ -20,6 +20,9 @@
     "react-otp-input": "^3.0.2",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.2",
+    "react-simply-carousel": "^9.0.1",
+    "react-slick": "^0.29.0",
+    "swiper": "^9.3.2",
     "validator": "^13.9.0"
   },
   "devDependencies": {

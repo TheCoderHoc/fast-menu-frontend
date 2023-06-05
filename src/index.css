@@ -13,7 +13,9 @@
 html:root{
     --primary-color: #06C167;
     --dark-color: #000000;
+    --dark-gray-color: #817F82;
     --gray-color: #eeeeee;
+    --secondary-color: #F5FBEF;
     --font-family: Raleway, sans-serif;
     font-size: 10px;
 }

@@ -1,0 +1,40 @@
+.user-dashboard {
+    background-color: var(--secondary-color);
+}
+
+.user-dashboard-content {
+    margin-left: 250px;
+}
+
+.main-sidebar-menu-bar {
+    width: 50px;
+}
+
+.main-sidebar-menu-bar > div {
+    align-items: center;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+}
+
+.main-sidebar-menu-bar .btn-icon {
+    border-radius: 0;
+    width: 100% !important;
+}
+
+.main-sidebar-drawer {
+    width: 250px !important;
+}
+
+
+@media screen and (max-width: 768px){
+    .user-dashboard-content{
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .main-sidebar-drawer {
+        width: 100% !important;
+    }
+}

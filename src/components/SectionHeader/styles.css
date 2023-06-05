@@ -1,0 +1,29 @@
+.section-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.section-header-title {
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.section-header-cta:hover {
+    text-decoration: underline var(--primary-color);
+}
+
+.section-header-cta a {
+    align-items: center;
+    color: var(--primary-color);
+    display: flex;
+}
+
+.section-header-cta-label{
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.section-header-cta svg {
+    margin-left: 0.2rem;
+}

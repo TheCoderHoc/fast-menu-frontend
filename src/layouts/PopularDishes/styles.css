@@ -1,0 +1,93 @@
+.popular-dishes-item {
+    background-color: #fff;
+    border-radius: 1rem;
+    /* flex: 1 0 30%; */
+    /* flex: 1; */
+    margin: 0 1rem;
+    padding: 1.5rem 2rem;
+    position: relative;
+    /* width: 33.3%; */
+    /* width: 300px !important; */
+}
+
+.popular-dishes-item-meta {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end
+}
+
+.popular-dishes-item-sale {
+    background-color: #d70040;
+    color: #fff;
+    font-size: 1.3rem;
+    left: 0;
+    padding: 0.2rem 1rem;
+    position: absolute;
+    top: 1.5rem ;
+}
+
+.popular-dishes-item-image {
+    display: block;
+    margin: auto;
+    object-fit: contain;
+    height: 17rem;
+    width: 17rem;
+}
+
+.popular-dishes-item-body {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.popular-dishes-item-name {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin: 0.5rem 0;
+    margin-right: 1rem;
+}
+
+.popular-dishes-item-price {
+    font-weight: bold;
+}
+
+
+@media screen and (max-width: 1040px){
+    .popular-dishes-item {
+        margin-bottom: 2rem;
+    }
+
+}
+
+@media screen and (max-width: 980px){
+    .popular-dishes-item-body{
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .popular-dishes-item-image {
+        width: 100%;
+    }
+
+    .popular-dishes-item-body .btn-icon {
+        margin-top: 1rem;
+    }    
+}
+
+@media screen and (max-width: 658px){
+    .popular-dishes-item-body {
+        text-align: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .popular-dishes-item-details {
+        width: 100%;
+    }
+
+    .popular-dishes-item-body {
+        text-align: center;
+    }
+}

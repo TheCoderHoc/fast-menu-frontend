@@ -1,0 +1,110 @@
+.alt-sidebar {
+    background-color: #fff;
+    padding: 2.5rem;
+}
+
+.alt-sidebar-top-content {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.alt-sidebar-top-content-left> * {
+    margin: 0 0.8rem;
+}
+
+.alt-sidebar-user-balance{
+    margin-top: 2rem;
+}
+
+.alt-sidebar-user-balance-title {
+    font-size: 1.8rem;
+}
+
+.alt-sidebar-user-balance-box {
+    align-items: center;
+    background-color: var(--primary-color);
+    border-radius: 1rem;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1.3rem;
+    padding: 2rem;
+}
+
+.alt-sidebar-user-balance-amount {
+    background-color: #fff;
+    border-radius: 1rem;
+    color: var(--dark-color);
+    padding: 1.3rem;
+    width: 105px;
+}
+
+.alt-sidebar-user-balance-amount h2 {
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+
+.alt-sidebar-user-balance-amount h3 {
+    font-size: 2rem;
+}
+
+.alt-sidebar-user-balance-action p {
+    font-size: 1.2rem;
+}
+
+.alt-sidebar-user-address {
+    margin-top: 2rem;
+}
+
+.alt-sidebar-user-address-name, .alt-sidebar-user-address-name .btn {
+    margin-top: 0.8rem;
+}
+
+.alt-sidebar-user-address-title {
+    font-size: 1.8rem;
+}
+
+.alt-sidebar-order-menu {
+    margin-top: 3rem;
+}
+
+.alt-sidebar-order-menu-title {
+    font-size: 1.8rem;
+}
+
+.alt-sidebar-menu-order-item-title h3 {
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+.alt-sidebar-menu-order-item {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.alt-sidebar-menu-order-item > div {
+    align-items: center;
+    display: flex;
+}
+
+.alt-sidebar-order-item-image {
+    display: block;
+    object-fit: contain;
+    margin-right: 1.5rem;
+    height: 70px;
+    width: 70px;
+}
+
+.alt-sidebar-total {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.alt-sidebar-total h3 {
+    font-size: 1.5rem;
+}

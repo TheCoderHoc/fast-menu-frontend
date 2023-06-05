@@ -11,8 +11,10 @@
 }
 
 .btn {
+    border: transparent;
     align-items: center;
     display: flex;
+    font-size: 1.5rem !important;
     justify-content: center;
     padding: 1.6rem;
 }
@@ -36,6 +38,21 @@
     border-color: #cccccc !important;
 }
 
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    color: #ffffff !important;
+}
+
+.btn-primary-alt {
+    background-color: none !important;
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color);
+}
+
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
     color: var(--dark-color) !important
 }
@@ -46,4 +63,47 @@
 
 .ant-tabs-tab:hover{
     color: var(--primary-color) !important;
+}
+
+.btn-icon  {
+    padding: 1.65rem !important;
+}
+
+.ant-rate svg {
+    font-size: 1.7rem;
+}
+
+.btn-white {
+    background-color: #ffffff;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.ant-drawer-content-wrapper {
+    width: 250px !important;
+}
+
+@media screen and (max-width: 500px) {
+    .ant-drawer-content-wrapper{
+        width: 100% !important;
+    }
+}
+
+.swiper-pagination{
+    position: static !important;
+    margin-top: 10px;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after{
+    font-size: 2.5rem !important;
+    color: var(--dark-gray-color);
+    transform: translateY(-50%);
+}
+
+@media screen and (max-width: 1100px){
+    .swiper-button-next::after, .swiper-button-prev::after{
+        display: none;
+    }
 }
