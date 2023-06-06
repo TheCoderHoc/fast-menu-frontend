@@ -1,10 +1,10 @@
-.input {
+.form-input {
     display: flex;
     flex-direction: column;
     padding-bottom: 1.5rem;
 }
 
-.input input {
+.form-input input {
     background-color: var(--gray-color);
     border: 1px solid transparent;
     border-radius: 0.7rem;
@@ -12,11 +12,11 @@
     padding: 1.6rem;
 }
 
-.input input:focus{
+.form-input input:focus{
     border-color: var(--dark-color);
 }
 
-.input-error-text {
+.form-input-error-text {
     font-size: 1.4rem;
     color: red;
 }

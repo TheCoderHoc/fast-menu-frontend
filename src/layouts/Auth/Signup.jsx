@@ -5,8 +5,8 @@ import { isEmail } from "validator";
 import passwordValidator from "password-validator";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Input from "../components/Input";
-import { setMessage } from "../redux/authSlice";
+import FormInput from "../../components/FormInput";
+import { setMessage } from "../../redux/authSlice";
 
 const Signup = ({ onChangeActiveTab }) => {
     const auth = useSelector((state) => state.auth);
@@ -17,7 +17,7 @@ const Signup = ({ onChangeActiveTab }) => {
 
     useEffect(() => {
         if (auth.user) {
-            navigate("/user/dashboard");
+            navigate("/user/dashboard/home");
         }
     }, [auth.user]);
 
@@ -139,7 +139,7 @@ const Signup = ({ onChangeActiveTab }) => {
             dispatch(
                 setMessage(
                     error.message === "Failed to fetch"
-                        ? "Please check your internet connection"
+                        ? "There was an error creating your account. Please try again later."
                         : error.message
                 )
             );
@@ -155,7 +155,7 @@ const Signup = ({ onChangeActiveTab }) => {
                 onSubmit={handleSubmit(onSubmit)}
                 noValidate
             >
-                <Input
+                <FormInput
                     id="fullName"
                     name="fullName"
                     type="text"
@@ -166,7 +166,7 @@ const Signup = ({ onChangeActiveTab }) => {
                     error={errMsg.fullName}
                 />
 
-                <Input
+                <FormInput
                     id="email"
                     name="email"
                     type="email"
@@ -175,7 +175,7 @@ const Signup = ({ onChangeActiveTab }) => {
                     error={errMsg.email}
                 />
 
-                <Input
+                <FormInput
                     id="password"
                     name="password"
                     type="password"
@@ -187,7 +187,7 @@ const Signup = ({ onChangeActiveTab }) => {
                     error={errMsg.password}
                 />
 
-                <Input
+                <FormInput
                     id="confirmPass"
                     name="confirmPass"
                     type="password"

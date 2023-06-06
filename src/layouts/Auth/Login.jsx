@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Input from "../components/Input";
-import { login, setMessage } from "../redux/authSlice";
+import FormInput from "../../components/FormInput";
+import { login, setMessage } from "../../redux/authSlice";
 
 const Login = () => {
     const auth = useSelector((state) => state.auth);
@@ -14,7 +14,7 @@ const Login = () => {
 
     useEffect(() => {
         if (auth.user) {
-            navigate("/user/dashboard");
+            navigate("/user/dashboard/home");
         }
     }, [auth.user]);
 
@@ -67,7 +67,7 @@ const Login = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 noValidate
             >
-                <Input
+                <FormInput
                     id="email"
                     name="email"
                     type="email"
@@ -76,7 +76,7 @@ const Login = () => {
                     error={errMsg.email}
                 />
 
-                <Input
+                <FormInput
                     id="password"
                     name="password"
                     type="password"

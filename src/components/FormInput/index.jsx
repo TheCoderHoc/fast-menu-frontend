@@ -1,9 +1,9 @@
 import React from "react";
 import "./styles.css";
 
-const Input = ({ id, name, label, type, placeholder, register, error }) => {
+const FormInput = ({ id, name, label, type, placeholder, register, error }) => {
     return (
-        <div className="input">
+        <div className="form-input">
             <label htmlFor={id}>{label}</label>
             <input
                 type={type}
@@ -15,12 +15,12 @@ const Input = ({ id, name, label, type, placeholder, register, error }) => {
             />
 
             {error && (
-                <div className="input-error">
-                    <p className="input-error-text">{error}</p>
+                <div className="form-input-error">
+                    <p className="form-input-error-text">{error}</p>
                 </div>
             )}
         </div>
     );
 };
 
-export default Input;
+export default FormInput;

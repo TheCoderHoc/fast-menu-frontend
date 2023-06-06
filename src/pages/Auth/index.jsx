@@ -5,20 +5,12 @@ import { FcGoogle } from "react-icons/fc";
 import { AiFillApple } from "react-icons/ai";
 import { AiFillFacebook } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
 import Logo from "../../components/Logo";
-import Signup from "../../layouts/Signup";
-import Login from "../../layouts/Login";
+import Signup from "../../layouts/Auth/Signup";
+import Login from "../../layouts/Auth/Login";
 import { setMessage } from "../../redux/authSlice";
 
 const Auth = () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const token = localStorage.getItem("jwt");
-
-    if (user && token) {
-        return <Navigate to="/user/dashboard" />;
-    }
-
     const auth = useSelector((state) => state.auth);
     const [activeKey, setActiveKey] = useState("1");
 

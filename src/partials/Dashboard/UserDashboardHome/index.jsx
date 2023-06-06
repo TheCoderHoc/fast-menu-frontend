@@ -6,15 +6,14 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css/effect-fade";
 import "swiper/css/bundle";
 import { Swiper, SwiperSlide } from "swiper/react";
-import menuCategories from "../../data/menuCategories";
-import SectionHeader from "../../components/SectionHeader";
-import chefImage from "../../assets/images/chef.png";
-import popularDishes from "../../data/popularDishes";
-import PopularDishes from "../PopularDishes";
+import menuCategories from "../../../data/menuCategories";
+import SectionHeader from "../../../layouts/SectionHeader";
+import chefImage from "../../../assets/images/chef.png";
+import popularDishes from "../../../data/popularDishes";
+import PopularDishes from "../../../layouts/PopularDishes";
 
 const UserDashboardHome = () => {
     const [searchQuery, setSearchQuery] = useState("");
-    const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
     return (
         <div className="user-dashboard-home">
@@ -84,10 +83,6 @@ const UserDashboardHome = () => {
             <section className="user-dashboard-home-popular-dishes">
                 <SectionHeader title="Popular Dishes" ctaLabel="View all" />
                 <ul className="user-dashboard-home-popular-dishes-list">
-                    {/* {popularDishes.map((dish) => (
-                        <PopularDishes key={dish.id} {...dish} />
-                    ))} */}
-
                     <Swiper
                         spaceBetween={10}
                         slidesPerView={3}

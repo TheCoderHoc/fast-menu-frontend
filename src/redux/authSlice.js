@@ -16,6 +16,7 @@ const authSlice = createSlice({
         },
         setUser: (state, action) => {
             state.user = action.payload.user;
+            state.token = action.payload.token;
         },
     },
     extraReducers: (builder) => {
@@ -48,7 +49,7 @@ const authSlice = createSlice({
             state.loading = false;
             state.message =
                 action.error.message === "Failed to fetch"
-                    ? "Please check your internet connection."
+                    ? "There was an error logging into your account. Please try again later."
                     : action.error.message;
         });
     },
@@ -73,4 +74,4 @@ export const login = createAsyncThunk(
 );
 
 export default authSlice.reducer;
-export const { setMessage } = authSlice.actions;
+export const { setMessage, setUser } = authSlice.actions;

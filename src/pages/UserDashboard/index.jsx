@@ -23,7 +23,7 @@ const UserDashboard = () => {
         <div className="user-dashboard">
             {isMatch ? (
                 <div className="main-sidebar-menu-bar">
-                    <Button
+                    <Button 
                         size="large"
                         icon={<AiOutlineBars size={25} color="#fff" />}
                         className="btn btn-primary btn-icon"
@@ -38,8 +38,6 @@ const UserDashboard = () => {
             <main className="user-dashboard-content">
                 <Outlet />
             </main>
-
-            {/* <AltSidebar /> */}
 
             <Drawer
                 placement="left"

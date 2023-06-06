@@ -1,10 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "../redux/authSlice";
+import authReducer, { setUser } from "../redux/authSlice";
+
+// GET AUTHENTICATED USER
+const user = JSON.parse(localStorage.getItem("user"));
+const authToken = localStorage.getItem("jwt");
 
 const store = configureStore({
     reducer: {
         auth: authReducer,
     },
 });
+
+store.dispatch(setUser({ user, token: authToken }));
 
 export default store;
