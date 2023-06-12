@@ -81,10 +81,6 @@
     font-weight: bold;
 }
 
-.ant-drawer-content-wrapper {
-    width: 250px !important;
-}
-
 @media screen and (max-width: 500px) {
     .ant-drawer-content-wrapper{
         width: 100% !important;

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles.css";
 import { Badge, Avatar, Button, Divider } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 import { TiMessages } from "react-icons/ti";
 import {
     MdOutlineNotificationsNone,
@@ -10,8 +11,17 @@ import {
 import { AiFillSetting } from "react-icons/ai";
 import userPic from "../../assets/images/user.jpg";
 import menuOrder from "../../data/menuOrder";
+import { fetchUserCart } from "../../redux/cartSlice";
 
 const AltSidebar = () => {
+    const dispatch = useDispatch();
+    const auth = useSelector((state) => state.auth);
+    const cart = useSelector((state) => state.cart);
+
+    useEffect(() => {
+        dispatch(fetchUserCart(auth.user.id));
+    }, []);
+
     return (
         <aside className="alt-sidebar">
             <div className="alt-sidebar-top-content">
@@ -69,7 +79,7 @@ const AltSidebar = () => {
                 </h2>
 
                 <div className="alt-sidebar-user-address-name">
-                    <p>12 Erelu Danisa Street, Ijeshatedo, Lagos</p>
+                    <p>{auth.user.address}</p>
                     <Button type="small" className="btn btn-primary-alt" block>
                         Change Address
                     </Button>
@@ -81,7 +91,15 @@ const AltSidebar = () => {
                     Your Order Menu
                 </h2>
 
-                {menuOrder.map(({ id, image, name, price, amount }) => (
+                <div className="alt-sidebar-cart-loading">
+                    {cart.loading ? (
+                        <p>Loading...</p>
+                    ) : cart.message ? (
+                        <p>{cart.message}</p>
+                    ) : null}
+                </div>
+
+                {/* {menuOrder.map(({ id, image, name, price, amount }) => (
                     <div className="alt-sidebar-menu-order-item" key={id}>
                         <div>
                             <img
@@ -102,7 +120,7 @@ const AltSidebar = () => {
                             {price}
                         </p>
                     </div>
-                ))}
+                ))} */}
             </div>
 
             <Divider style={{ borderColor: "var(--gray-color)" }} />

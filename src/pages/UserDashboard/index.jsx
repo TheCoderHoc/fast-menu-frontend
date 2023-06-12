@@ -9,26 +9,35 @@ import { Button, Drawer } from "antd";
 
 const UserDashboard = () => {
     const isMatch = useMediaQuery("(max-width: 768px)");
-    const [open, setOpen] = useState(false);
+    const [mainSidebarOpen, setMainSidebarOpen] = useState(false);
+    const [altSidebarOpen, setAltSidebarOpen] = useState(true);
 
-    const showDrawer = () => {
-        setOpen(true);
+    const showMainSidebar = () => {
+        setMainSidebarOpen(true);
     };
 
-    const hideDrawer = () => {
-        setOpen(false);
+    const hideMainSidebar = () => {
+        setMainSidebarOpen(false);
+    };
+
+    const showAltSidebar = () => {
+        setAltSidebarOpen(true);
+    };
+
+    const hideAltSidebar = () => {
+        setAltSidebarOpen(false);
     };
 
     return (
         <div className="user-dashboard">
             {isMatch ? (
                 <div className="main-sidebar-menu-bar">
-                    <Button 
+                    <Button
                         size="large"
                         icon={<AiOutlineBars size={25} color="#fff" />}
                         className="btn btn-primary btn-icon"
                         block
-                        onClick={showDrawer}
+                        onClick={showMainSidebar}
                     />
                 </div>
             ) : (
@@ -39,15 +48,31 @@ const UserDashboard = () => {
                 <Outlet />
             </main>
 
+            {/* MAIN SIDEBAR FROM THE LEFT */}
+            <div className="main-sidebar-drawer">
+                <Drawer
+                    placement="left"
+                    open={mainSidebarOpen}
+                    onClose={hideMainSidebar}
+                    closable={isMatch}
+                    size="default"
+                    width={250}
+                >
+                    <MainSidebar onHideDrawer={hideMainSidebar} />
+                </Drawer>
+            </div>
+
+            {/* ALTERNATIVE SIDEBAR FROM THE RIGHT */}
+            <div className="alt-sidebar-drawer"></div>
             <Drawer
-                placement="left"
-                open={open}
-                onClose={hideDrawer}
-                closable={isMatch}
+                placement="right"
+                open={altSidebarOpen}
+                onClose={hideAltSidebar}
                 size="default"
-                className="main-sidebar-drawer"
+                className="alt-sidebar-drawer"
+                closable={false}
             >
-                <MainSidebar onHideDrawer={hideDrawer} />
+                <AltSidebar />
             </Drawer>
         </div>
     );

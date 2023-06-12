@@ -1,25 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Button } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 import { Navigation, Pagination } from "swiper";
 import "swiper/css/effect-fade";
 import "swiper/css/bundle";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import menuCategories from "../../../data/menuCategories";
 import SectionHeader from "../../../layouts/SectionHeader";
 import chefImage from "../../../assets/images/chef.png";
-import popularDishes from "../../../data/popularDishes";
-import PopularDishes from "../../../layouts/PopularDishes";
+import PopularDish from "../../../layouts/PopularDish";
+import { fetchProducts } from "../../../redux/productSlice";
 
 const UserDashboardHome = () => {
     const [searchQuery, setSearchQuery] = useState("");
+
+    const auth = useSelector((state) => state.auth);
+    const product = useSelector((state) => state.product);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchProducts("popular"));
+    }, []);
+
+    // EXTRACT FIRST NAME FROM USER'S FULL NAME
+    const name = auth.user.fullName.split(" ")[0];
 
     return (
         <div className="user-dashboard-home">
             <header className="user-dashboard-home-header">
                 <h1 className="user-dashboard-home-header-title">
-                    Welcome, Jennifer
+                    Welcome, {name}
                 </h1>
 
                 <form className="user-dashboard-home-form">
@@ -95,9 +109,9 @@ const UserDashboardHome = () => {
                             968: { slidesPerView: 3 },
                         }}
                     >
-                        {popularDishes.map((dish) => (
-                            <SwiperSlide key={dish.id}>
-                                <PopularDishes {...dish} />
+                        {product.products.map((product) => (
+                            <SwiperSlide key={product._id}>
+                                <PopularDish {...product} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
