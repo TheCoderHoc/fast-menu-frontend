@@ -3,12 +3,18 @@ import "./styles.css";
 import { AiFillHeart } from "react-icons/ai";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Button, Rate, Spin } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/cartSlice";
+import { openDrawer } from "../../redux/UISlice";
 
-const PopularDish = ({ _id, name, price, rating }) => {
+const PopularDish = ({ product }) => {
+    const { _id, name, price, rating } = product;
+
     const [imageSrc, setImageSrc] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+
+    const UI = useSelector((state) => state.UI);
 
     const dispatch = useDispatch();
 
@@ -32,7 +38,7 @@ const PopularDish = ({ _id, name, price, rating }) => {
             } catch (error) {
                 setLoading(false);
 
-                setError("Could not fetch product image.");
+                setError("Could not fetch image.");
 
                 console.log(error.message);
             }
@@ -42,7 +48,9 @@ const PopularDish = ({ _id, name, price, rating }) => {
     }, []);
 
     const handleAddToCart = () => {
-        console.log("Added to cart");
+        dispatch(addToCart(_id));
+
+        dispatch(openDrawer());
     };
 
     return (

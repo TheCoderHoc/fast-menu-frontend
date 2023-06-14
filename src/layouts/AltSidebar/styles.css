@@ -80,38 +80,17 @@
     font-size: 1.8rem;
 }
 
-.alt-sidebar-menu-order-item-title h3 {
-    font-size: 1.5rem;
-    font-weight: normal;
-}
-
-.alt-sidebar-menu-order-item {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
-}
-
-.alt-sidebar-menu-order-item > div {
-    align-items: center;
-    display: flex;
-}
-
-.alt-sidebar-order-item-image {
-    display: block;
-    object-fit: contain;
-    margin-right: 1.5rem;
-    height: 70px;
-    width: 70px;
-}
-
-.alt-sidebar-total {
+.alt-sidebar-total-price, .alt-sidebar-total-quantity {
     align-items: center;
     display: flex;
     justify-content: space-between;
     margin-bottom: 2rem;
 }
 
-.alt-sidebar-total h3 {
-    font-size: 1.5rem;
+.alt-sidebar-total-price h3, .alt-sidebar-total-quantity h3 {
+    font-size: 1.4rem;
+}
+
+.alt-sidebar-total-quantity {
+    margin-top: 3rem;
 }

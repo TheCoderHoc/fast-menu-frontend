@@ -1,0 +1,28 @@
+.cart-item {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.cart-item > div {
+    align-items: center;
+    display: flex;
+}
+
+.cart-item-image {
+    display: block;
+    object-fit: contain;
+    margin-right: 1.5rem;
+    height: 70px;
+    width: 70px
+}
+
+.cart-item-name {
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+.cart-item-trash-icon {
+    margin-left: 1rem;
+}

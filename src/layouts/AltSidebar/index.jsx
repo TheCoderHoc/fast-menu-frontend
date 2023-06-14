@@ -10,16 +10,17 @@ import {
 } from "react-icons/md";
 import { AiFillSetting } from "react-icons/ai";
 import userPic from "../../assets/images/user.jpg";
-import menuOrder from "../../data/menuOrder";
-import { fetchUserCart } from "../../redux/cartSlice";
+import { fetchCart } from "../../redux/cartSlice";
+import CartItem from "../CartItem";
 
 const AltSidebar = () => {
-    const dispatch = useDispatch();
     const auth = useSelector((state) => state.auth);
     const cart = useSelector((state) => state.cart);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        dispatch(fetchUserCart(auth.user.id));
+        dispatch(fetchCart());
     }, []);
 
     return (
@@ -99,38 +100,34 @@ const AltSidebar = () => {
                     ) : null}
                 </div>
 
-                {/* {menuOrder.map(({ id, image, name, price, amount }) => (
-                    <div className="alt-sidebar-menu-order-item" key={id}>
-                        <div>
-                            <img
-                                src={image}
-                                alt={name}
-                                className="alt-sidebar-order-item-image"
-                            />
+                {cart.cart?.products?.map((cartItem) => (
+                    <CartItem key={cartItem._id} {...cartItem} />
+                ))}
 
-                            <div className="alt-sidebar-menu-order-item-title">
-                                <h3>{name}</h3>
-                                <p className="alt-sidebar-menu-order-item-amount">
-                                    x{amount}
-                                </p>
-                            </div>
-                        </div>
-                        <p className="text-bold">
-                            +<span className="text-primary">$</span>
-                            {price}
-                        </p>
-                    </div>
-                ))} */}
+                {cart.cart?.products?.length === 0 && (
+                    <p>You do not have any items in your order.</p>
+                )}
             </div>
 
             <Divider style={{ borderColor: "var(--gray-color)" }} />
 
-            <div className="alt-sidebar-total">
-                <h3>Total:</h3>
-                <p>
-                    <span className="text-primary">$</span> 202
-                </p>
-            </div>
+            {cart.cart?.products?.length > 0 && (
+                <div className="alt-sidebar-total-quantity">
+                    <h3>Total Quantity: </h3>
+
+                    <p>{cart.cart.totalQuantity}</p>
+                </div>
+            )}
+
+            {cart.cart?.products?.length > 0 && (
+                <div className="alt-sidebar-total-price">
+                    <h3>Total Price:</h3>
+                    <p>
+                        <span className="text-primary">$</span>{" "}
+                        {cart.cart?.totalPrice}
+                    </p>
+                </div>
+            )}
 
             <Button size="large" className="btn btn-primary" block>
                 Checkout

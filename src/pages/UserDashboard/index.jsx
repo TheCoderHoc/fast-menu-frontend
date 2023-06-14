@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import "./styles.css";
+import { Button, Drawer } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
+import { AiOutlineBars } from "react-icons/ai";
 import MainSidebar from "../../layouts/MainSidebar";
 import AltSidebar from "../../layouts/AltSidebar";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import { AiOutlineBars } from "react-icons/ai";
-import { Button, Drawer } from "antd";
+import { closeDrawer } from "../../redux/UISlice";
 
 const UserDashboard = () => {
     const isMatch = useMediaQuery("(max-width: 768px)");
     const [mainSidebarOpen, setMainSidebarOpen] = useState(false);
-    const [altSidebarOpen, setAltSidebarOpen] = useState(true);
+
+    const { isDrawerOpen } = useSelector((state) => state.UI);
+
+    const dispatch = useDispatch();
 
     const showMainSidebar = () => {
         setMainSidebarOpen(true);
@@ -18,14 +23,6 @@ const UserDashboard = () => {
 
     const hideMainSidebar = () => {
         setMainSidebarOpen(false);
-    };
-
-    const showAltSidebar = () => {
-        setAltSidebarOpen(true);
-    };
-
-    const hideAltSidebar = () => {
-        setAltSidebarOpen(false);
     };
 
     return (
@@ -63,11 +60,10 @@ const UserDashboard = () => {
             </div>
 
             {/* ALTERNATIVE SIDEBAR FROM THE RIGHT */}
-            <div className="alt-sidebar-drawer"></div>
             <Drawer
                 placement="right"
-                open={altSidebarOpen}
-                onClose={hideAltSidebar}
+                open={isDrawerOpen}
+                onClose={() => dispatch(closeDrawer())}
                 size="default"
                 className="alt-sidebar-drawer"
                 closable={false}

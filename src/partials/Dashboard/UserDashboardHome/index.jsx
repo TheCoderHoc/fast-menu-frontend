@@ -111,7 +111,7 @@ const UserDashboardHome = () => {
                     >
                         {product.products.map((product) => (
                             <SwiperSlide key={product._id}>
-                                <PopularDish {...product} />
+                                <PopularDish product={product} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
