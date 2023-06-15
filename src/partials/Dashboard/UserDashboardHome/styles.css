@@ -1,4 +1,6 @@
 .user-dashboard-home {
+    height: 100vh;
+    overflow: auto;
     padding: 5rem;
     padding-top: 3rem;
 }
