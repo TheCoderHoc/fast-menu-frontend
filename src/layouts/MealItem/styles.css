@@ -1,22 +1,19 @@
-.popular-dishes-item {
+.meal-item {
     background-color: #fff;
     border-radius: 1rem;
-    /* flex: 1 0 30%; */
-    /* flex: 1; */
     margin: 0 1rem;
     padding: 1.5rem 2rem;
     position: relative;
-    /* width: 33.3%; */
-    /* width: 300px !important; */
+
 }
 
-.popular-dishes-item-meta {
+.meal-item-meta {
     align-items: center;
     display: flex;
     justify-content: flex-end
 }
 
-.popular-dishes-item-sale {
+.meal-item-sale {
     background-color: #d70040;
     color: #fff;
     font-size: 1.3rem;
@@ -26,68 +23,82 @@
     top: 1.5rem ;
 }
 
-.popular-dishes-item-image {
-    display: block;
-    margin: auto;
-    object-fit: contain;
-    height: 17rem;
-    width: 17rem;
+.meal-item-heart-icon {
+    animation-name: pulse;
+    animation-duration: 0.5s;
 }
 
-.popular-dishes-item-body {
+.meal-item-image {
+    /* display: block; */
+    /* margin: auto; */
+    /* object-fit: contain; */
+    /* height: 17rem; */
+    /* width: 17rem; */
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.meal-item-body {
     align-items: center;
     display: flex;
     justify-content: space-between;
     margin-top: 1.5rem;
 }
 
-.popular-dishes-item-name {
+.meal-item-name {
     font-size: 1.5rem;
     font-weight: normal;
     margin: 0.5rem 0;
     margin-right: 1rem;
 }
 
-.popular-dishes-item-price {
+.meal-item-price {
     font-weight: bold;
+}
+
+@keyframes pulse {
+    0%{transform: scale(1);}
+    50%{transform: scale(2);}
+    100%{transform: scale(1);}
 }
 
 
 @media screen and (max-width: 1040px){
-    .popular-dishes-item {
+    .meal-item {
         margin-bottom: 2rem;
     }
 
 }
 
 @media screen and (max-width: 980px){
-    .popular-dishes-item-body{
+    .meal-item-body{
         align-items: flex-start;
         flex-direction: column;
     }
 
-    .popular-dishes-item-image {
+    .meal-item-image {
         width: 100%;
     }
 
-    .popular-dishes-item-body .btn-icon {
+    .meal-item-body .btn-icon {
         margin-top: 1rem;
     }    
 }
 
 @media screen and (max-width: 658px){
-    .popular-dishes-item-body {
+    .meal-item-body {
         text-align: center;
         align-items: center;
     }
 }
 
 @media screen and (max-width: 500px){
-    .popular-dishes-item-details {
+    .meal-item-details {
         width: 100%;
     }
 
-    .popular-dishes-item-body {
+    .meal-item-body {
         text-align: center;
     }
 }

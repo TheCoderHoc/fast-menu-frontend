@@ -17,6 +17,7 @@
     align-items: center;
     color: var(--primary-color);
     display: flex;
+    text-decoration: none;
 }
 
 .section-header-cta-label{

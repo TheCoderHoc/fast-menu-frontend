@@ -48,8 +48,6 @@ const cartSlice = createSlice({
                 return;
             }
 
-            console.log(cart);
-
             state.cart = { ...cart };
         });
 
@@ -75,6 +73,13 @@ const cartSlice = createSlice({
             }
 
             state.cart = { ...cart };
+        });
+
+        builder.addCase(deleteCartItem.rejected, (state, action) => {
+            state.loading = false;
+
+            state.message =
+                "An error occurred while deleting this item from your cart. Please try again later!";
         });
     },
 });

@@ -6,8 +6,9 @@ import { Button, Rate, Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 import { openDrawer } from "../../redux/UISlice";
+import { toggleFavourite } from "../../redux/favouriteSlice";
 
-const PopularDish = ({ product }) => {
+const MealItem = ({ product }) => {
     const { _id, name, price, rating } = product;
 
     const [imageSrc, setImageSrc] = useState("");
@@ -15,6 +16,11 @@ const PopularDish = ({ product }) => {
     const [error, setError] = useState("");
 
     const UI = useSelector((state) => state.UI);
+    const favourite = useSelector((state) => state.favourite);
+
+    const isMealFav = favourite.favourites.items?.find(
+        (item) => item._id === _id
+    );
 
     const dispatch = useDispatch();
 
@@ -53,13 +59,30 @@ const PopularDish = ({ product }) => {
         dispatch(openDrawer());
     };
 
-    return (
-        <li className="popular-dishes-item">
-            <header className="popular-dishes-item-header">
-                <div className="popular-dishes-item-meta">
-                    <p className="popular-dishes-item-sale">15% off</p>
+    let heartIconClassName = "";
 
-                    <AiFillHeart size={19} color="#bbbb" />
+    isMealFav ? (heartIconClassName = "meal-item-heart-icon") : "";
+
+    return (
+        <li className="meal-item">
+            <header className="meal-item-header">
+                <div className="meal-item-meta">
+                    <p className="meal-item-sale">15% off</p>
+
+                    {isMealFav ? (
+                        <AiFillHeart
+                            size={20}
+                            color="red"
+                            onClick={() => dispatch(toggleFavourite(_id))}
+                            className={heartIconClassName}
+                        />
+                    ) : (
+                        <AiFillHeart
+                            size={20}
+                            color="#bbb"
+                            onClick={() => dispatch(toggleFavourite(_id))}
+                        />
+                    )}
                 </div>
 
                 {loading ? (
@@ -68,18 +91,18 @@ const PopularDish = ({ product }) => {
                     <img
                         src={imageSrc}
                         alt={name}
-                        className="popular-dishes-item-image"
+                        className="meal-item-image"
                     />
                 )}
 
                 {error}
             </header>
 
-            <main className="popular-dishes-item-body">
-                <div className="popular-dishes-item-details">
+            <main className="meal-item-body">
+                <div className="meal-item-details">
                     <Rate defaultValue={rating} disabled />
-                    <h3 className="popular-dishes-item-name">{name}</h3>
-                    <p className="popular-dishes-item-price">
+                    <h3 className="meal-item-name">{name}</h3>
+                    <p className="meal-item-price">
                         <span className="text-primary">$</span>
                         {price}
                     </p>
@@ -95,4 +118,4 @@ const PopularDish = ({ product }) => {
     );
 };
 
-export default PopularDish;
+export default MealItem;

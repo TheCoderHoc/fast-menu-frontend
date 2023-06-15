@@ -8,6 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Auth from "./pages/Auth";
 import UserDashboard from "./pages/UserDashboard";
 import UserDashboardHome from "./partials/Dashboard/UserDashboardHome";
+import Favourites from "./partials/Dashboard/Favourites";
 
 const App = () => {
     return (
@@ -43,7 +44,7 @@ const App = () => {
                         path="favourites"
                         element={
                             <PrivateRoute>
-                                <h2>Favourites</h2>
+                                <Favourites />
                             </PrivateRoute>
                         }
                     />

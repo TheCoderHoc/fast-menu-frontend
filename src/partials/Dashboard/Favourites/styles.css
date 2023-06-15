@@ -1,0 +1,37 @@
+.favourites {
+    padding: 5rem;
+    padding-top: 3rem;
+    height: 100vh;
+    overflow: auto;
+}
+
+.favourites-loading {
+    margin-top: 3rem;
+}
+
+.favourites-loading-title {
+    font-size: 1.8rem;
+}
+
+.favourites-empty {
+    margin-top: 3rem;
+}
+
+.favourites-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 2rem;
+    margin-top: 3rem;
+}
+
+@media screen and (max-width: 1024px){
+    .favourites-items{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 500px){
+    .favourites-items {
+        grid-template-columns: 1fr;
+    }
+}

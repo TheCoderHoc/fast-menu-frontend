@@ -11,8 +11,9 @@ import "swiper/css";
 import menuCategories from "../../../data/menuCategories";
 import SectionHeader from "../../../layouts/SectionHeader";
 import chefImage from "../../../assets/images/chef.png";
-import PopularDish from "../../../layouts/PopularDish";
+import MealItem from "../../../layouts/MealItem";
 import { fetchProducts } from "../../../redux/productSlice";
+import { fetchFavourites } from "../../../redux/favouriteSlice";
 
 const UserDashboardHome = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -24,6 +25,7 @@ const UserDashboardHome = () => {
 
     useEffect(() => {
         dispatch(fetchProducts("popular"));
+        dispatch(fetchFavourites());
     }, []);
 
     // EXTRACT FIRST NAME FROM USER'S FULL NAME
@@ -111,7 +113,7 @@ const UserDashboardHome = () => {
                     >
                         {product.products.map((product) => (
                             <SwiperSlide key={product._id}>
-                                <PopularDish product={product} />
+                                <MealItem product={product} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
