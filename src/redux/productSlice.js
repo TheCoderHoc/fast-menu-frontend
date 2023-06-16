@@ -71,9 +71,9 @@ const productSlice = createSlice({
 
 export const fetchProducts = createAsyncThunk(
     "product/fetchProducts",
-    async ({ filter, sortBy, order, category, page, limit }) => {
+    async ({ filter, sortBy, order, category, page, limit, search }) => {
         const response = await fetch(
-            `http://localhost:3000/products?filter=${filter}&sortBy=${sortBy}&order=${order}&category=${category}&page=${page}&limit=${limit}`
+            `http://localhost:3000/products?filter=${filter}&sortBy=${sortBy}&order=${order}&category=${category}&page=${page}&limit=${limit}&search=${search}`
         );
 
         return response.json();

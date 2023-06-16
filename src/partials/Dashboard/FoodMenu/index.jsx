@@ -10,12 +10,12 @@ import menuCategories from "../../../data/menuCategories";
 
 const FoodMenu = () => {
     const dispatch = useDispatch();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchQuery, setSearchQuery] = useState(searchParams.get("search"));
 
     const product = useSelector((state) => state.product);
-
-    const [searchParams, setSearchParams] = useSearchParams();
 
     const searchParamsObject = Object.fromEntries(
         new URLSearchParams(searchParams)
@@ -29,6 +29,7 @@ const FoodMenu = () => {
         category: "all",
         page: 1,
         limit: 6,
+        search: "",
     };
 
     for (const entry of searchParams.entries()) {
@@ -68,6 +69,13 @@ const FoodMenu = () => {
         setSearchParams({ ...searchParamsObject, page: page });
 
         setCurrentPage(page);
+    };
+
+    const handleSearch = (e) => {
+        // PREVENT FORM SUBMISSION
+        e.preventDefault();
+
+        setSearchParams({ ...searchParamsObject, search: searchQuery });
     };
 
     return (
@@ -148,13 +156,15 @@ const FoodMenu = () => {
                 </Radio.Group>
             </div>
 
-            <form className="food-menu-search-form">
+            <form className="food-menu-search-form" onSubmit={handleSearch}>
                 <AiOutlineSearch size={22} color="var(--primary-color)" />
 
                 <input
                     type="text"
                     className="food-menu-search-input"
                     placeholder="Search our menu..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                 />
             </form>
 

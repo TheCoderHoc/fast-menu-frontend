@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigation, Pagination } from "swiper";
 import "swiper/css/effect-fade";
@@ -22,6 +23,7 @@ const UserDashboardHome = () => {
     const product = useSelector((state) => state.product);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(fetchPopularProducts());
@@ -32,6 +34,13 @@ const UserDashboardHome = () => {
     // EXTRACT FIRST NAME FROM USER'S FULL NAME
     const name = auth.user.fullName.split(" ")[0];
 
+    const handleSubmit = (e) => {
+        // PREVENT FORM SUBMISSION
+        e.preventDefault();
+
+        navigate(`/user/dashboard/menu?search=${searchQuery}`);
+    };
+
     return (
         <div className="user-dashboard-home">
             <header className="user-dashboard-home-header">
@@ -39,13 +48,16 @@ const UserDashboardHome = () => {
                     Welcome, {name}
                 </h1>
 
-                <form className="user-dashboard-home-form">
+                <form
+                    className="user-dashboard-home-form"
+                    onSubmit={handleSubmit}
+                >
                     <AiOutlineSearch size={22} color="var(--primary-color)" />
                     <input
                         type="text"
                         placeholder="What do you want to eat today?"
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.query)}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </form>
             </header>
