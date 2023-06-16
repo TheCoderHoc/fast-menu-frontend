@@ -65,6 +65,8 @@ const FoodMenu = () => {
     const handlePageChange = (page) => {
         dispatch(fetchProducts({ ...queries, page, limit: 6 }));
 
+        setSearchParams({ ...searchParamsObject, page: page });
+
         setCurrentPage(page);
     };
 

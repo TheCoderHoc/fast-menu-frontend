@@ -29,13 +29,10 @@
 }
 
 .meal-item-image {
-    /* display: block; */
-    /* margin: auto; */
-    /* object-fit: contain; */
-    /* height: 17rem; */
-    /* width: 17rem; */
-    width: 100%;
+    display: block;
     height: auto;
+    width: 100%;
+    height: 25rem;
     object-fit: contain;
 }
 
