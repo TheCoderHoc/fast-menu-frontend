@@ -12,7 +12,7 @@ import menuCategories from "../../../data/menuCategories";
 import SectionHeader from "../../../layouts/SectionHeader";
 import chefImage from "../../../assets/images/chef.png";
 import MealItem from "../../../layouts/MealItem";
-import { fetchProducts } from "../../../redux/productSlice";
+import { fetchPopularProducts } from "../../../redux/productSlice";
 import { fetchFavourites } from "../../../redux/favouriteSlice";
 
 const UserDashboardHome = () => {
@@ -24,7 +24,8 @@ const UserDashboardHome = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchProducts("popular"));
+        dispatch(fetchPopularProducts());
+
         dispatch(fetchFavourites());
     }, []);
 
