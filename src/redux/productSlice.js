@@ -4,6 +4,7 @@ const initialState = {
     loading: false,
     messge: "",
     products: [],
+    totalProducts: 0,
 };
 
 const productSlice = createSlice({
@@ -18,7 +19,7 @@ const productSlice = createSlice({
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
             state.loading = true;
 
-            const { error, products } = action.payload;
+            const { error, products, totalProducts } = action.payload;
 
             if (error) {
                 state.messge = error;
@@ -27,6 +28,7 @@ const productSlice = createSlice({
 
             state.message = "";
             state.products = products;
+            state.totalProducts = totalProducts;
         });
 
         builder.addCase(fetchProducts.rejected, (state, action) => {
@@ -69,9 +71,9 @@ const productSlice = createSlice({
 
 export const fetchProducts = createAsyncThunk(
     "product/fetchProducts",
-    async ({ filter, sortBy, order, category }) => {
+    async ({ filter, sortBy, order, category, page, limit }) => {
         const response = await fetch(
-            `http://localhost:3000/products?filter=${filter}&sortBy=${sortBy}&order=${order}&category=${category}`
+            `http://localhost:3000/products?filter=${filter}&sortBy=${sortBy}&order=${order}&category=${category}&page=${page}&limit=${limit}`
         );
 
         return response.json();

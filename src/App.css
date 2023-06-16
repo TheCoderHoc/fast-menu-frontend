@@ -81,6 +81,14 @@
     font-weight: bold;
 }
 
+.ant-pagination-item-active {
+    border-color: var(--primary-color) !important;
+}
+
+.ant-pagination-item-active a {
+    color: var(--primary-color) !important;
+}
+
 @media screen and (max-width: 500px) {
     .ant-drawer-content-wrapper{
         width: 100% !important;

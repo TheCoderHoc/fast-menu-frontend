@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
-import { Select, Radio } from "antd";
+import { Select, Radio, Pagination } from "antd";
 import { useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -10,6 +10,8 @@ import menuCategories from "../../../data/menuCategories";
 
 const FoodMenu = () => {
     const dispatch = useDispatch();
+
+    const [currentPage, setCurrentPage] = useState(1);
 
     const product = useSelector((state) => state.product);
 
@@ -25,6 +27,8 @@ const FoodMenu = () => {
         sortBy: "name",
         order: "asc",
         category: "all",
+        page: 1,
+        limit: 6,
     };
 
     for (const entry of searchParams.entries()) {
@@ -57,6 +61,12 @@ const FoodMenu = () => {
         label: category.label,
         value: category.label.toLowerCase(),
     }));
+
+    const handlePageChange = (page) => {
+        dispatch(fetchProducts({ ...queries, page, limit: 6 }));
+
+        setCurrentPage(page);
+    };
 
     return (
         <div className="food-menu">
@@ -150,6 +160,17 @@ const FoodMenu = () => {
                 {product?.products?.map((meal) => {
                     return <MealItem key={meal._id} product={meal} />;
                 })}
+            </div>
+
+            <div className="food-menu-pagination">
+                <Pagination
+                    defaultCurrent={1}
+                    current={currentPage}
+                    total={product.totalProducts}
+                    defaultPageSize={6}
+                    pageSize={6}
+                    onChange={handlePageChange}
+                />
             </div>
         </div>
     );
