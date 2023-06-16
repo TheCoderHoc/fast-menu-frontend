@@ -11,7 +11,7 @@ const productSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder.addCase(fetchProducts.pending, (state, action) => {
-            state.loading = false;
+            state.loading = true;
         });
 
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
@@ -38,9 +38,9 @@ const productSlice = createSlice({
 
 export const fetchProducts = createAsyncThunk(
     "product/fetchProducts",
-    async (filter) => {
+    async ({ filter, sortBy, order, category }) => {
         const response = await fetch(
-            `http://localhost:3000/products?filter=${filter}`
+            `http://localhost:3000/products?filter=${filter}&sortBy=${sortBy}&order=${order}&category=${category}`
         );
         return response.json();
     }

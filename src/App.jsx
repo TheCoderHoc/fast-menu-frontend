@@ -9,6 +9,7 @@ import Auth from "./pages/Auth";
 import UserDashboard from "./pages/UserDashboard";
 import UserDashboardHome from "./partials/Dashboard/UserDashboardHome";
 import Favourites from "./partials/Dashboard/Favourites";
+import FoodMenu from "./partials/Dashboard/FoodMenu";
 
 const App = () => {
     return (
@@ -36,7 +37,7 @@ const App = () => {
                         path="menu"
                         element={
                             <PrivateRoute>
-                                <h2>Menu</h2>
+                                <FoodMenu />
                             </PrivateRoute>
                         }
                     />

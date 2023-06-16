@@ -40,7 +40,7 @@ const Favourites = () => {
 
             <div className="favourites-items">
                 {favourites?.items?.map((item) => (
-                    <MealItem key={item._id} product={item} favourite={true} />
+                    <MealItem key={item._id} product={item}  />
                 ))}
             </div>
         </div>

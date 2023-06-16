@@ -1,0 +1,48 @@
+.food-menu {
+    height: 100vh;
+    overflow: auto;
+    padding: 5rem;
+    padding-top: 3rem;
+}
+
+.food-menu-loading {
+    margin-top: 3rem;
+}
+
+.food-menu-loading h2 {
+    font-size: 2rem;
+}
+
+.food-menu-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 2rem;
+    margin-top: 3rem;
+}
+
+.food-menu-items-options {
+    align-items: center;
+    display: flex;
+    margin-top: 3rem;
+}
+
+.food-menu-items-option {
+    align-items: center;
+    display: flex;
+}
+
+.food-menu-items-option > * {
+    margin: 0 1rem
+}
+
+@media screen and (max-width: 1024px){
+    .food-menu-items{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 500px){
+    .food-menu-items {
+        grid-template-columns: 1fr;
+    }
+}
