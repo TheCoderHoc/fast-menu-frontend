@@ -3,6 +3,7 @@ import "./styles.css";
 import { Select, Radio } from "antd";
 import { useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { AiOutlineSearch } from "react-icons/ai";
 import { fetchProducts } from "../../../redux/productSlice";
 import MealItem from "../../../layouts/MealItem";
 import menuCategories from "../../../data/menuCategories";
@@ -120,6 +121,7 @@ const FoodMenu = () => {
                                 value: "all",
                             },
                             ...categoryOptions,
+
                             {
                                 label: "Others",
                                 value: "others",
@@ -133,6 +135,16 @@ const FoodMenu = () => {
                     <Radio value="desc">Descending</Radio>
                 </Radio.Group>
             </div>
+
+            <form className="food-menu-search-form">
+                <AiOutlineSearch size={22} color="var(--primary-color)" />
+
+                <input
+                    type="text"
+                    className="food-menu-search-input"
+                    placeholder="Search our menu..."
+                />
+            </form>
 
             <div className="food-menu-items">
                 {product?.products?.map((meal) => {
