@@ -5,6 +5,10 @@
     overflow: auto;
 }
 
+.favourites::-webkit-scrollbar{
+    display: none;
+}
+
 .favourites-loading {
     margin-top: 3rem;
 }
@@ -30,8 +34,21 @@
     }
 }
 
+@media screen and (max-width: 768px){
+    .favourites {
+        padding: 2rem;
+    }
+}
+
+
 @media screen and (max-width: 500px){
     .favourites-items {
         grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .favourites{
+        padding: 1rem;
     }
 }

@@ -5,6 +5,10 @@
     padding-top: 3rem;
 }
 
+.food-menu::-webkit-scrollbar{
+    display: none;
+}
+
 .food-menu-search-form {
     align-items: center;
     background-color: #fff;
@@ -40,18 +44,19 @@
     margin-top: 3rem;
 }
 
-.food-menu-items-options {
+.food-menu-options {
     align-items: center;
     display: flex;
+    flex-wrap: wrap;
     margin-top: 3rem;
 }
 
-.food-menu-items-option {
+.food-menu-option {
     align-items: center;
     display: flex;
 }
 
-.food-menu-items-option > * {
+.food-menu-option > * {
     margin: 0 1rem
 }
 
@@ -65,8 +70,24 @@
     }
 }
 
+@media screen and (max-width: 768px){
+    .food-menu {
+        padding: 2rem;
+    }
+}
+
 @media screen and (max-width: 500px){
     .food-menu-items {
         grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .food-menu{
+        padding: 1rem;
+    }
+
+    .food-menu-search-form{
+        width: 100%;
     }
 }

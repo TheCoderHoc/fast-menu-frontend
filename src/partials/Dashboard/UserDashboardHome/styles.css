@@ -5,6 +5,10 @@
     padding-top: 3rem;
 }
 
+.user-dashboard-home::-webkit-scrollbar{
+    display: none;
+}
+
 .user-dashboard-home-header {
     align-items: center;
     display: flex;
@@ -148,6 +152,10 @@
 }
 
 @media screen and (max-width: 768px) {
+    .user-dashboard-home {
+        padding: 2rem;
+    }
+
     .user-dashboard-home-banner-image{
         display: block;
     }

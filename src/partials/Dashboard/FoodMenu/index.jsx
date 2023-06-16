@@ -13,7 +13,9 @@ const FoodMenu = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [searchQuery, setSearchQuery] = useState(searchParams.get("search"));
+    const [searchQuery, setSearchQuery] = useState(
+        searchParams.get("search") || ""
+    );
 
     const product = useSelector((state) => state.product);
 
@@ -82,8 +84,8 @@ const FoodMenu = () => {
         <div className="food-menu">
             <h1 className="food-menu-title">Our Menu</h1>
 
-            <div className="food-menu-items-options">
-                <div className="food-menu-items-option">
+            <div className="food-menu-options">
+                <div className="food-menu-option">
                     <p>Sort By:</p>
 
                     <Select
@@ -107,7 +109,7 @@ const FoodMenu = () => {
                     />
                 </div>
 
-                <div className="food-menu-items-option">
+                <div className="food-menu-option">
                     <p>Filter</p>
 
                     <Select
@@ -128,7 +130,7 @@ const FoodMenu = () => {
                     />
                 </div>
 
-                <div className="food-menu-items-option">
+                <div className="food-menu-option">
                     <p>Category: </p>
 
                     <Select
