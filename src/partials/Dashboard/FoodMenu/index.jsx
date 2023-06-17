@@ -53,7 +53,7 @@ const FoodMenu = () => {
     };
 
     const handleCategoryChange = (value) => {
-        setSearchParams({ ...searchParamsObject, category: value });
+        setSearchParams({ ...searchParamsObject, category: value, search: "" });
     };
 
     const handleOrderChange = (e) => {
@@ -77,7 +77,11 @@ const FoodMenu = () => {
         // PREVENT FORM SUBMISSION
         e.preventDefault();
 
-        setSearchParams({ ...searchParamsObject, search: searchQuery });
+        setSearchParams({
+            ...searchParamsObject,
+            search: searchQuery,
+            page: 1,
+        });
     };
 
     return (
@@ -170,22 +174,37 @@ const FoodMenu = () => {
                 />
             </form>
 
+            {queries.search && (
+                <div className="food-menu-search-results">
+                    <h2>Search Results for: {queries.search}</h2>
+
+                    {product?.products?.length === 0 && (
+                        <p>
+                            We could not find any meals. Please try another
+                            search term.
+                        </p>
+                    )}
+                </div>
+            )}
+
             <div className="food-menu-items">
                 {product?.products?.map((meal) => {
                     return <MealItem key={meal._id} product={meal} />;
                 })}
             </div>
 
-            <div className="food-menu-pagination">
-                <Pagination
-                    defaultCurrent={1}
-                    current={currentPage}
-                    total={product.totalProducts}
-                    defaultPageSize={6}
-                    pageSize={6}
-                    onChange={handlePageChange}
-                />
-            </div>
+            {product?.products?.length !== 0 && (
+                <div className="food-menu-pagination">
+                    <Pagination
+                        defaultCurrent={1}
+                        current={currentPage}
+                        total={product.totalProducts}
+                        defaultPageSize={6}
+                        pageSize={6}
+                        onChange={handlePageChange}
+                    />
+                </div>
+            )}
         </div>
     );
 };

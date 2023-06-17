@@ -29,6 +29,14 @@
     width: 100%;
 }
 
+.food-menu-search-results{
+    margin-top: 2rem;
+}
+
+.food-menu-search-results h2 {
+    margin-bottom: 1.2rem;
+}
+
 .food-menu-loading {
     margin-top: 3rem;
 }
