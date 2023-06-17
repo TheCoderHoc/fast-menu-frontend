@@ -81,6 +81,7 @@ const FoodMenu = () => {
             ...searchParamsObject,
             search: searchQuery,
             page: 1,
+            category: "all",
         });
     };
 
@@ -175,16 +176,16 @@ const FoodMenu = () => {
             </form>
 
             {queries.search && (
-                <div className="food-menu-search-results">
-                    <h2>Search Results for: {queries.search}</h2>
+                <h2 className="food-menu-search-results">
+                    Search Results for: {queries.search}
+                </h2>
+            )}
 
-                    {product?.products?.length === 0 && (
-                        <p>
-                            We could not find any meals. Please try another
-                            search term.
-                        </p>
-                    )}
-                </div>
+            {product?.products?.length === 0 && (
+                <p className="food-menu-empty-products">
+                    We could not find any meals. Please try another search term
+                    or category.
+                </p>
             )}
 
             <div className="food-menu-items">

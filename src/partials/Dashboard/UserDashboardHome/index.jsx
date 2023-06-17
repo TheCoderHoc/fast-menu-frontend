@@ -41,6 +41,12 @@ const UserDashboardHome = () => {
         navigate(`/user/dashboard/menu?search=${searchQuery}`);
     };
 
+    const handleCategoryClick = (categoryName) => {
+        const category = categoryName.toLowerCase();
+
+        navigate(`/user/dashboard/menu?category=${category}`);
+    };
+
     return (
         <div className="user-dashboard-home">
             <header className="user-dashboard-home-header">
@@ -99,7 +105,10 @@ const UserDashboardHome = () => {
                     }}
                 >
                     {menuCategories.map(({ id, icon, label }) => (
-                        <SwiperSlide key={id}>
+                        <SwiperSlide
+                            key={id}
+                            onClick={() => handleCategoryClick(label)}
+                        >
                             <div className="user-dashboard-home-category">
                                 <img src={icon} alt={label} />
                                 <h3>{label}</h3>

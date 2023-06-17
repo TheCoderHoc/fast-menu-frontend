@@ -33,8 +33,9 @@
     margin-top: 2rem;
 }
 
-.food-menu-search-results h2 {
-    margin-bottom: 1.2rem;
+.food-menu-empty-products {
+    font-size: 1.8rem;
+    margin-top: 2rem;
 }
 
 .food-menu-loading {
