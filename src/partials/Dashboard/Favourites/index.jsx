@@ -16,6 +16,8 @@ const Favourites = () => {
         dispatch(fetchFavourites());
     }, []);
 
+    console.log(favourites);
+
     return (
         <div className="favourites">
             <h1 className="favourites-title">Your Favourites</h1>
@@ -40,7 +42,7 @@ const Favourites = () => {
 
             <div className="favourites-items">
                 {favourites?.items?.map((item) => (
-                    <MealItem key={item._id} product={item}  />
+                    <MealItem key={item._id} product={item} />
                 ))}
             </div>
         </div>

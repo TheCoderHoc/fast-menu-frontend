@@ -11,7 +11,8 @@
 .meal-item-meta {
     align-items: center;
     display: flex;
-    justify-content: flex-end
+    justify-content: flex-end;
+    margin-bottom: 1rem;
 }
 
 .meal-item-sale {

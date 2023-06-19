@@ -53,7 +53,12 @@ const FoodMenu = () => {
     };
 
     const handleCategoryChange = (value) => {
-        setSearchParams({ ...searchParamsObject, category: value, search: "" });
+        setSearchParams({
+            ...searchParamsObject,
+            category: value,
+            page: 1,
+            search: "",
+        });
     };
 
     const handleOrderChange = (e) => {

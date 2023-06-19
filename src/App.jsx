@@ -10,6 +10,7 @@ import UserDashboard from "./pages/UserDashboard";
 import UserDashboardHome from "./partials/Dashboard/UserDashboardHome";
 import Favourites from "./partials/Dashboard/Favourites";
 import FoodMenu from "./partials/Dashboard/FoodMenu";
+import UserAccount from "./partials/UserAccount";
 
 const App = () => {
     return (
@@ -85,7 +86,7 @@ const App = () => {
                         path="account"
                         element={
                             <PrivateRoute>
-                                <h2>Account</h2>
+                                <UserAccount />
                             </PrivateRoute>
                         }
                     />

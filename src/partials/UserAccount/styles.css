@@ -1,0 +1,150 @@
+.user-account {
+    height: 100vh;
+    overflow: auto;
+    padding-top: 3rem;
+    padding: 5rem;
+}
+
+.user-account::-webkit-scrollbar{
+    display: none;
+}
+
+.user-account-title {
+    font-size: 2.2rem;
+}
+
+.user-account-section {
+    border: 1px solid #bbb;
+    border-radius: 2rem;
+    margin-top: 3rem;
+    padding: 3rem;
+}
+
+.user-account-basic-info {
+    align-items: center;
+    display: flex;   
+}
+
+.user-account-basic-info .ant-avatar {
+    height: auto;
+    width: 100px;
+}
+
+.user-account-basic-info-details {
+    margin-left: 2.5rem;
+}
+
+.user-account-basic-info-details h2 {
+    font-size: 2rem;
+}
+
+.user-account-basic-info-details p{
+    color: var(--dark-gray-color);
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.user-account button {
+    border-color: var(--primary-color);
+    color: var(--primary-color);    
+}
+
+.user-account-basic-info button {
+    margin-left: auto;
+}
+
+.user-account button:hover {
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.user-account-section-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-account-section-title {
+    font-size: 2.2rem;
+}
+
+.user-account-section-content {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.user-account-section-info h3 {
+    color: var(--dark-gray-color);
+    font-size: 1.4rem;
+    font-weight: normal;
+}
+
+.user-account-section-info p {
+    font-weight: bold;
+}
+
+.modal-content-form {
+    margin-top: 2rem;
+}
+
+.modal-content-message {
+    align-items: center;
+    background-color: var(--primary-color);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+}
+
+.upload-avatar {
+    margin-top: 1rem;
+}
+
+.upload-button {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 768px){
+    .user-account {
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .user-account-section-content{
+        grid-template-columns: 1fr;
+    }
+
+    .user-account-section-title{
+        font-size: 1.75rem;
+    }
+}
+
+@media screen and (max-width: 425px){
+    .user-account-basic-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user-account-basic-info-details {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    .user-account-basic-info button {
+        margin-left: initial;
+        margin-top: 1rem;
+    }
+    
+}
+
+@media screen and (max-width: 350px){
+    .user-account{
+        padding: 1rem;
+    }
+}

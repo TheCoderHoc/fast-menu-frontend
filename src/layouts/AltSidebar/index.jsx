@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { Badge, Avatar, Button, Divider } from "antd";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,11 +17,44 @@ const AltSidebar = () => {
     const auth = useSelector((state) => state.auth);
     const cart = useSelector((state) => state.cart);
 
+    const [imageSrc, setImageSrc] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchCart());
     }, []);
+
+    // FETCH THE PRODUCT IMAGE
+    useEffect(() => {
+        const fetchUserAvatar = async () => {
+            try {
+                const response = await fetch(
+                    `http://localhost:3000/user/${auth.user._id}/avatar`
+                );
+
+                const blob = await response.blob();
+
+                const imageUrl = URL.createObjectURL(blob);
+
+                setImageSrc(imageUrl);
+
+                setLoading(false);
+
+                setError("");
+            } catch (error) {
+                setLoading(false);
+
+                setError("Could not fetch image.");
+
+                console.log(error.message);
+            }
+        };
+
+        fetchUserAvatar();
+    }, [auth.user]);
 
     return (
         <aside className="alt-sidebar">
@@ -39,7 +72,7 @@ const AltSidebar = () => {
                 <div className="alt-sidebar-top-content-right">
                     <Avatar
                         size="large"
-                        src={userPic}
+                        src={imageSrc}
                         alt="Profile picture of user"
                     />
                 </div>
@@ -80,7 +113,7 @@ const AltSidebar = () => {
                 </h2>
 
                 <div className="alt-sidebar-user-address-name">
-                    <p>{auth.user.address}</p>
+                    {/* <p>{auth.user.address}</p> */}
                     <Button type="small" className="btn btn-primary-alt" block>
                         Change Address
                     </Button>
