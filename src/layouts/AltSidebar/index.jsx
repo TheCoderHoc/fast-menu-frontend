@@ -9,6 +9,7 @@ import {
     MdAttachMoney,
     MdOutlineMoney,
 } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import { AiFillSetting } from "react-icons/ai";
 import { fetchCart } from "../../redux/cartSlice";
 import CartItem from "../CartItem";
@@ -22,12 +23,13 @@ const AltSidebar = () => {
     const [error, setError] = useState("");
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    console.log(cart);
 
     useEffect(() => {
         dispatch(fetchCart());
     }, []);
-
-    console.log(auth.user);
 
     // FETCH THE PRODUCT IMAGE
     useEffect(() => {
@@ -79,35 +81,6 @@ const AltSidebar = () => {
                         src={imageSrc}
                         alt="Profile picture of user"
                     />
-                </div>
-            </div>
-
-            <div className="alt-sidebar-user-balance">
-                <h2 className="alt-sidebar-user-balance-title">Your Balance</h2>
-
-                <div className="alt-sidebar-user-balance-box">
-                    <div className="alt-sidebar-user-balance-amount">
-                        <h2>Balance</h2>
-                        <h3>$12.00</h3>
-                    </div>
-
-                    <div className="alt-sidebar-user-balance-action">
-                        <Button
-                            size="small"
-                            className="btn btn-white btn-icon"
-                            icon={<MdAttachMoney size={18} />}
-                        />
-                        <p>Top Up</p>
-                    </div>
-
-                    <div className="alt-sidebar-user-balance-action">
-                        <Button
-                            size="small"
-                            className="btn btn-white btn-icon"
-                            icon={<MdOutlineMoney size={18} />}
-                        />
-                        <p>Transfer</p>
-                    </div>
                 </div>
             </div>
 
@@ -178,7 +151,12 @@ const AltSidebar = () => {
                 </div>
             )}
 
-            <Button size="large" className="btn btn-primary" block>
+            <Button
+                size="large"
+                className="btn btn-primary"
+                block
+                onClick={() => navigate("/checkout")}
+            >
                 Checkout
             </Button>
         </aside>

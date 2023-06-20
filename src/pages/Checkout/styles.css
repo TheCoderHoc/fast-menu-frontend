@@ -1,0 +1,52 @@
+.checkout {
+    margin: auto;
+    margin-top: 3rem;
+    width: 500px;
+}
+
+.checkout-title {
+    margin-bottom: 2rem;
+}
+
+.checkout-details {
+    margin-top: 1rem;
+}
+
+.checkout-total-quantity, .checkout-subtotal, .checkout-fee, .checkout-total {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-subtotal {
+    margin: 1.5rem 0;
+}
+
+.checkout-total {
+    margin-bottom: 2rem;
+}
+
+.checkout-details h3 {
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+.checkout-details p {
+    font-weight: bold;
+}
+
+.checkout-success {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 500px){
+    .checkout {
+        padding: 1rem;
+        width: 100%;
+    }
+    .checkout-form {
+        width: 100%;
+    }
+}

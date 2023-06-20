@@ -12,46 +12,6 @@
     margin: 0 0.8rem;
 }
 
-.alt-sidebar-user-balance{
-    margin-top: 2rem;
-}
-
-.alt-sidebar-user-balance-title {
-    font-size: 1.7rem;
-}
-
-.alt-sidebar-user-balance-box {
-    align-items: center;
-    background-color: var(--primary-color);
-    border-radius: 1rem;
-    color: #fff;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 1.3rem;
-    padding: 2rem;
-}
-
-.alt-sidebar-user-balance-amount {
-    background-color: #fff;
-    border-radius: 1rem;
-    color: var(--dark-color);
-    padding: 1.3rem;
-    width: 105px;
-}
-
-.alt-sidebar-user-balance-amount h2 {
-    font-weight: normal;
-    font-size: 1.2rem;
-}
-
-.alt-sidebar-user-balance-amount h3 {
-    font-size: 2rem;
-}
-
-.alt-sidebar-user-balance-action p {
-    font-size: 1.2rem;
-}
-
 .alt-sidebar-user-address {
     margin-top: 2rem;
 }

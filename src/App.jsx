@@ -11,6 +11,7 @@ import UserDashboardHome from "./partials/Dashboard/UserDashboardHome";
 import Favourites from "./partials/Dashboard/Favourites";
 import FoodMenu from "./partials/Dashboard/FoodMenu";
 import UserAccount from "./partials/UserAccount";
+import Checkout from "./pages/Checkout";
 
 const App = () => {
     return (
@@ -91,6 +92,14 @@ const App = () => {
                         }
                     />
                 </Route>
+                <Route
+                    path="/checkout"
+                    element={
+                        <PrivateRoute>
+                            <Checkout />
+                        </PrivateRoute>
+                    }
+                />
             </Routes>
         </Provider>
     );
