@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
-import { Select, Radio, Pagination } from "antd";
+import { Select, Radio, Pagination, Button } from "antd";
 import { useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -12,6 +12,8 @@ const FoodMenu = () => {
     const dispatch = useDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
 
+    const [showSearch, setShowSearch] = useState(false);
+
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState(
         searchParams.get("search") || ""
@@ -22,6 +24,10 @@ const FoodMenu = () => {
     const searchParamsObject = Object.fromEntries(
         new URLSearchParams(searchParams)
     );
+
+    const toggleShowSearch = () => {
+        setShowSearch(!showSearch);
+    };
 
     // DEFAULT QUERIES
     const queries = {
@@ -166,19 +172,28 @@ const FoodMenu = () => {
                     <Radio value="asc">Ascending</Radio>
                     <Radio value="desc">Descending</Radio>
                 </Radio.Group>
+
+                <Button
+                    className="btn btn-primary btn-icon"
+                    size="large"
+                    icon={<AiOutlineSearch size={22} />}
+                    onClick={toggleShowSearch}
+                />
             </div>
 
-            <form className="food-menu-search-form" onSubmit={handleSearch}>
-                <AiOutlineSearch size={22} color="var(--primary-color)" />
+            {showSearch && (
+                <form className="food-menu-search-form" onSubmit={handleSearch}>
+                    <AiOutlineSearch size={22} color="var(--primary-color)" />
 
-                <input
-                    type="text"
-                    className="food-menu-search-input"
-                    placeholder="Search our menu..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                />
-            </form>
+                    <input
+                        type="text"
+                        className="food-menu-search-input"
+                        placeholder="Search our menu..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                </form>
+            )}
 
             {queries.search && (
                 <h2 className="food-menu-search-results">
