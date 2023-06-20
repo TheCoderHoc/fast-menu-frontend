@@ -73,7 +73,9 @@ export const fetchProducts = createAsyncThunk(
     "product/fetchProducts",
     async ({ filter, sortBy, order, category, page, limit, search }) => {
         const response = await fetch(
-            `http://localhost:3000/products?filter=${filter}&sortBy=${sortBy}&order=${order}&category=${category}&page=${page}&limit=${limit}&search=${search}`
+            `${
+                import.meta.env.VITE_API_URL
+            }products?filter=${filter}&sortBy=${sortBy}&order=${order}&category=${category}&page=${page}&limit=${limit}&search=${search}`
         );
 
         return response.json();
@@ -83,7 +85,9 @@ export const fetchProducts = createAsyncThunk(
 export const fetchPopularProducts = createAsyncThunk(
     "product/fetchPopularProducts",
     async () => {
-        const response = await fetch("http://localhost:3000/products/popular");
+        const response = await fetch(
+            `${import.meta.env.VITE_API_URL}products/popular`
+        );
 
         return response.json();
     }

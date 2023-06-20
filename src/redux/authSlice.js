@@ -128,16 +128,19 @@ const authSlice = createSlice({
 export const login = createAsyncThunk(
     "auth/login",
     async ({ email, password }) => {
-        const response = await fetch("http://localhost:3000/user/login", {
-            method: "POST",
-            body: JSON.stringify({
-                email,
-                password,
-            }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+        const response = await fetch(
+            `${import.meta.env.VITE_API_URL}auth/login`,
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    email,
+                    password,
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
 
         return response.json();
     }
@@ -146,7 +149,7 @@ export const login = createAsyncThunk(
 export const updateUserInfo = createAsyncThunk(
     "auth/updateUserInfo",
     async (newUserInfo) => {
-        const response = await fetch("http://localhost:3000/auth/user", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}user`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -160,7 +163,7 @@ export const updateUserInfo = createAsyncThunk(
 );
 
 export const logout = createAsyncThunk("auth/logout", async () => {
-    const response = await fetch("http://localhost:3000/user/logout", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}auth/logout`, {
         method: "POST",
         headers: {
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,

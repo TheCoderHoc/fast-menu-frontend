@@ -66,11 +66,14 @@ const favouriteSlice = createSlice({
 export const fetchFavourites = createAsyncThunk(
     "favourite/fetchFavourites",
     async () => {
-        const response = await fetch("http://localhost:3000/favourites", {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            },
-        });
+        const response = await fetch(
+            `${import.meta.env.VITE_API_URL}favourites`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+                },
+            }
+        );
 
         return response.json();
     }
@@ -80,7 +83,7 @@ export const toggleFavourite = createAsyncThunk(
     "favourite/toggleFavourites",
     async (mealId) => {
         const response = await fetch(
-            `http://localhost:3000/favourites/${mealId}`,
+            `${import.meta.env.VITE_API_URL}favourites/${mealId}`,
             {
                 method: "POST",
 

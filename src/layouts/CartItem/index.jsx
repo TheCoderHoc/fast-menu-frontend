@@ -17,7 +17,7 @@ const CartItem = ({ _id, name, quantity, price }) => {
         const fetchProductImage = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:3000/products/${_id}/image`
+                    `${import.meta.env.VITE_API_URL}products/${_id}/image`
                 );
 
                 const blob = await response.blob();

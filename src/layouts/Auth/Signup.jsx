@@ -109,17 +109,20 @@ const Signup = ({ onChangeActiveTab }) => {
 
     const signup = async ({ fullName, email, password }) => {
         try {
-            const response = await fetch("http://localhost:3000/user/signup", {
-                method: "POST",
-                body: JSON.stringify({
-                    fullName,
-                    email,
-                    password,
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}auth/signup`,
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        fullName,
+                        email,
+                        password,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
 
             const { error, success } = await response.json();
 

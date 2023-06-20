@@ -25,8 +25,6 @@ const AltSidebar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    console.log(cart);
-
     useEffect(() => {
         dispatch(fetchCart());
     }, []);
@@ -36,7 +34,9 @@ const AltSidebar = () => {
         const fetchUserAvatar = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:3000/user/${auth.user._id}/avatar`
+                    `${import.meta.env.VITE_API_URL}user/${
+                        auth.user._id
+                    }/avatar`
                 );
 
                 const blob = await response.blob();
@@ -60,7 +60,7 @@ const AltSidebar = () => {
         fetchUserAvatar();
     }, [auth.user]);
 
-    const { street, city, state } = auth.user.address;
+    const address = auth.user.address;
 
     return (
         <aside className="alt-sidebar">
@@ -84,6 +84,8 @@ const AltSidebar = () => {
                 </div>
             </div>
 
+            <Divider />
+
             <div className="alt-sidebar-user-address">
                 <h2 className="alt-sidebar-user-address-title">
                     Your Delivery Address
@@ -92,7 +94,8 @@ const AltSidebar = () => {
                 <div className="alt-sidebar-user-address-name">
                     {auth.user.address ? (
                         <p>
-                            {street}, {city}, {state}
+                            {auth.user.address.street}, {auth.user.address.city}
+                            , {auth.user.address.state}
                         </p>
                     ) : (
                         <p>You have not added an address.</p>
@@ -102,12 +105,12 @@ const AltSidebar = () => {
                         to="/user/dashboard/account"
                         className="btn btn-primary-alt"
                     >
-                        {auth.user.address
-                            ? "Change Address"
-                            : "Add Your Address"}
+                        {address ? "Change Address" : "Add Your Address"}
                     </Link>
                 </div>
             </div>
+
+            <Divider />
 
             <div className="alt-sidebar-order-menu">
                 <h2 className="alt-sidebar-order-menu-title">

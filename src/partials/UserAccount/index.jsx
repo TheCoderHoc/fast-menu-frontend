@@ -38,12 +38,14 @@ const UserAccount = () => {
         dispatch(logout(auth.user_id));
     };
 
-    // FETCH THE PRODUCT IMAGE
+    // FETCH THE USER AVATAR
     useEffect(() => {
         const fetchUserAvatar = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:3000/user/${auth.user._id}/avatar`
+                    `${import.meta.env.VITE_API_URL}user/${
+                        auth.user._id
+                    }/avatar`
                 );
 
                 const blob = await response.blob();
@@ -514,7 +516,7 @@ const UploadAvatarContent = ({ onHideModal }) => {
         name: "avatar",
         listType: "picture-circle",
         className: "upload-avatar",
-        action: "http://localhost:3000/user/avatar",
+        action: `${import.meta.env.VITE_API_URL}user/avatar`,
         maxCount: 1,
         showUploadList: false,
         headers: {

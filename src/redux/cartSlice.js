@@ -110,7 +110,7 @@ const cartSlice = createSlice({
 });
 
 export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
-    const response = await fetch("http://localhost:3000/cart", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}cart`, {
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -123,7 +123,7 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
 export const addToCart = createAsyncThunk(
     "cart/addToCart",
     async (productId) => {
-        const response = await fetch("http://localhost:3000/cart", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}cart`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -142,7 +142,7 @@ export const deleteCartItem = createAsyncThunk(
     "cart/deleteCartItem",
     async (productId) => {
         const response = await fetch(
-            `http://localhost:3000/cart/${productId}`,
+            `${import.meta.env.VITE_API_URL}cart/${productId}`,
             {
                 method: "DELETE",
                 headers: {
@@ -157,7 +157,7 @@ export const deleteCartItem = createAsyncThunk(
 );
 
 export const emptyCart = createAsyncThunk("cart/emptyCart", async () => {
-    const response = await fetch(`http://localhost:3000/cart/`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}cart/`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
