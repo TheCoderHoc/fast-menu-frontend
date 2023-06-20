@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { Badge, Avatar, Button, Divider } from "antd";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { TiMessages } from "react-icons/ti";
 import {
     MdOutlineNotificationsNone,
@@ -9,7 +10,6 @@ import {
     MdOutlineMoney,
 } from "react-icons/md";
 import { AiFillSetting } from "react-icons/ai";
-import userPic from "../../assets/images/user.jpg";
 import { fetchCart } from "../../redux/cartSlice";
 import CartItem from "../CartItem";
 
@@ -26,6 +26,8 @@ const AltSidebar = () => {
     useEffect(() => {
         dispatch(fetchCart());
     }, []);
+
+    console.log(auth.user);
 
     // FETCH THE PRODUCT IMAGE
     useEffect(() => {
@@ -55,6 +57,8 @@ const AltSidebar = () => {
 
         fetchUserAvatar();
     }, [auth.user]);
+
+    const { street, city, state } = auth.user.address;
 
     return (
         <aside className="alt-sidebar">
@@ -109,14 +113,26 @@ const AltSidebar = () => {
 
             <div className="alt-sidebar-user-address">
                 <h2 className="alt-sidebar-user-address-title">
-                    Your Billing Address
+                    Your Delivery Address
                 </h2>
 
                 <div className="alt-sidebar-user-address-name">
-                    {/* <p>{auth.user.address}</p> */}
-                    <Button type="small" className="btn btn-primary-alt" block>
-                        Change Address
-                    </Button>
+                    {auth.user.address ? (
+                        <p>
+                            {street}, {city}, {state}
+                        </p>
+                    ) : (
+                        <p>You have not added an address.</p>
+                    )}
+
+                    <Link
+                        to="/user/dashboard/account"
+                        className="btn btn-primary-alt"
+                    >
+                        {auth.user.address
+                            ? "Change Address"
+                            : "Add Your Address"}
+                    </Link>
                 </div>
             </div>
 

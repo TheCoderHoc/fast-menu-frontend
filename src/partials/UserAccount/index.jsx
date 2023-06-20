@@ -7,10 +7,10 @@ import { FiLogOut } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
 import FormInput from "../../components/FormInput";
-import userPic from "../../assets/images/user.jpg";
 import { setUser, updateUserInfo } from "../../redux/authSlice";
 import { setMessage, setIsUserUpdated } from "../../redux/authSlice";
 import { logout } from "../../redux/authSlice";
+import { closeDrawer } from "../../redux/UISlice";
 
 const UserAccount = () => {
     const [imageSrc, setImageSrc] = useState("");
@@ -66,6 +66,10 @@ const UserAccount = () => {
 
         fetchUserAvatar();
     }, [auth.user]);
+
+    useEffect(() => {
+        dispatch(closeDrawer());
+    }, []);
 
     return (
         <>
@@ -151,7 +155,7 @@ const UserAccount = () => {
                         </Button>
                     </div>
 
-                    <div className="user-account-section-content">
+                    <div className="user-account-section-content" id="address">
                         <div className="user-account-section-info">
                             <h3>Country</h3>
                             <p>{auth.user?.address?.country || "N/A"}</p>
