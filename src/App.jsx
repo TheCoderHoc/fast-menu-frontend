@@ -21,7 +21,7 @@ const App = () => {
     return (
         <Provider store={store}>
             <Routes>
-                <Route path="/" element={<Navigate to="user/auth" />} />
+                <Route path="/" element={<Navigate to="auth" />} />
 
                 <Route path="/auth" element={<Auth />} />
 

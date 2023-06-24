@@ -494,7 +494,7 @@ const UploadAvatarContent = ({ onHideModal }) => {
         name: "avatar",
         listType: "picture-circle",
         className: "upload-avatar",
-        action: `${import.meta.env.VITE_API_URL}/user/avatar`,
+        action: `${API_URL}/user/avatar`,
         maxCount: 1,
         showUploadList: false,
         headers: {

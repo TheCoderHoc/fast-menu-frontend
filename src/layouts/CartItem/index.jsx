@@ -5,12 +5,13 @@ import { BsTrash } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { deleteCartItem } from "../../redux/cart.slice";
 import useFetchImage from "../../hooks/useFetchImage";
+import { API_URL } from "../../constants/api";
 
 const CartItem = ({ _id, name, quantity, price }) => {
     const dispatch = useDispatch();
 
     const [loading, error, imageSrc] = useFetchImage(
-        `${import.meta.env.VITE_API_URL}/products/${_id}/image`
+        `${API_URL}/products/${_id}/image`
     );
 
     const handleDeleteCartItem = () => {
