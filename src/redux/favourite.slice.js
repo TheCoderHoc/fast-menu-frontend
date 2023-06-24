@@ -1,4 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+    fetchFavouritesService,
+    toggleFavouriteService,
+} from "../services/favourite.services";
 
 const initialState = {
     loading: false,
@@ -66,34 +70,16 @@ const favouriteSlice = createSlice({
 export const fetchFavourites = createAsyncThunk(
     "favourite/fetchFavourites",
     async () => {
-        const response = await fetch(
-            `${import.meta.env.VITE_API_URL}favourites`,
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-                },
-            }
-        );
-
-        return response.json();
+        const response = fetchFavouritesService();
+        return response;
     }
 );
 
 export const toggleFavourite = createAsyncThunk(
     "favourite/toggleFavourites",
     async (mealId) => {
-        const response = await fetch(
-            `${import.meta.env.VITE_API_URL}favourites/${mealId}`,
-            {
-                method: "POST",
-
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-                },
-            }
-        );
-
-        return response.json();
+        const response = toggleFavouriteService(mealId);
+        return response;
     }
 );
 

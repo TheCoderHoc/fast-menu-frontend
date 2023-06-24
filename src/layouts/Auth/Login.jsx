@@ -5,7 +5,7 @@ import { isEmail } from "validator";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../../components/FormInput";
-import { login, setMessage } from "../../redux/authSlice";
+import { login, setMessage } from "../../redux/auth.slice";
 
 const Login = () => {
     const auth = useSelector((state) => state.auth);
@@ -14,7 +14,7 @@ const Login = () => {
 
     useEffect(() => {
         if (auth.user) {
-            navigate("/user/dashboard/home");
+            navigate("/dashboard/home");
         }
     }, [auth.user]);
 

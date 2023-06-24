@@ -1,23 +1,8 @@
-.user-dashboard-home {
-    height: 100vh;
-    overflow: auto;
-    padding: 5rem;
-    padding-top: 3rem;
-}
-
-.user-dashboard-home::-webkit-scrollbar{
-    display: none;
-}
-
 .user-dashboard-home-header {
     align-items: center;
     display: flex;
     justify-content: space-between;
     margin-bottom: 3rem;
-}
-
-.user-dashboard-home-header-title {
-    font-size: 2.2rem;
 }
 
 .user-dashboard-home-form {
@@ -26,8 +11,8 @@
     border: 2px solid var(--gray-color);
     border-radius: 2rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.23);
-
     display: flex;
+    margin-top: 1rem;
     padding: 1rem 2rem;
     width: 35rem;
 }
@@ -41,7 +26,7 @@
 }
 
 .user-dashboard-home-banner {
-    background: url(../../../assets/images/food-bg.svg) no-repeat center center/cover;
+    background: url(../../assets/images/food-bg.svg) no-repeat center center/cover;
     border-radius: 2.5rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.23);
     color: #fff;
@@ -155,10 +140,6 @@
 }
 
 @media screen and (max-width: 768px) {
-    .user-dashboard-home {
-        padding: 2rem;
-    }
-
     .user-dashboard-home-banner-image{
         display: block;
     }
@@ -189,11 +170,7 @@
     }
 }
 
-@media screen and (max-width: 350px){
-    .user-dashboard-home{
-        padding: 1rem;
-    }
-    
+@media screen and (max-width: 350px){    
     .user-dashboard-home-form{
         width: 100%;
     }

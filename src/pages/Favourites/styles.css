@@ -1,0 +1,22 @@
+.loading-favorites-text, .empty-favourites-text {
+    margin-top: 2rem;
+}
+
+.favourites-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 2rem;
+    margin-top: 3rem;
+}
+
+@media screen and (max-width: 1024px){
+    .favourites-items{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 500px){
+    .favourites-items {
+        grid-template-columns: 1fr;
+    }
+}

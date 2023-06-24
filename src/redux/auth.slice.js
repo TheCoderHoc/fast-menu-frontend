@@ -1,4 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+    loginService,
+    logoutService,
+    updateUserInfoService,
+} from "../services/auth.services";
 
 const initialState = {
     loading: false,
@@ -128,50 +133,23 @@ const authSlice = createSlice({
 export const login = createAsyncThunk(
     "auth/login",
     async ({ email, password }) => {
-        const response = await fetch(
-            `${import.meta.env.VITE_API_URL}auth/login`,
-            {
-                method: "POST",
-                body: JSON.stringify({
-                    email,
-                    password,
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        );
-
-        return response.json();
-    }
-);
-
-export const updateUserInfo = createAsyncThunk(
-    "auth/updateUserInfo",
-    async (newUserInfo) => {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}user`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            },
-            body: JSON.stringify(newUserInfo),
-        });
-
-        return response.json();
+        const response = loginService(email, password);
+        return response;
     }
 );
 
 export const logout = createAsyncThunk("auth/logout", async () => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}auth/logout`, {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-    });
-
-    return response.json();
+    const response = logoutService();
+    return response;
 });
+
+export const updateUserInfo = createAsyncThunk(
+    "auth/updateUserInfo",
+    async (newUserInfo) => {
+        const response = updateUserInfoService(newUserInfo);
+        return response;
+    }
+);
 
 export default authSlice.reducer;
 export const { setMessage, setUser, setIsUserUpdated, setUserAvatar } =

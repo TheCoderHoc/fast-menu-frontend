@@ -1,4 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+    fetchPopularProductsService,
+    fetchProductsService,
+} from "../services/product.services";
 
 const initialState = {
     loading: false,
@@ -71,25 +75,17 @@ const productSlice = createSlice({
 
 export const fetchProducts = createAsyncThunk(
     "product/fetchProducts",
-    async ({ filter, sortBy, order, category, page, limit, search }) => {
-        const response = await fetch(
-            `${
-                import.meta.env.VITE_API_URL
-            }products?filter=${filter}&sortBy=${sortBy}&order=${order}&category=${category}&page=${page}&limit=${limit}&search=${search}`
-        );
-
-        return response.json();
+    async (queries) => {
+        const response = fetchProductsService(queries);
+        return response;
     }
 );
 
 export const fetchPopularProducts = createAsyncThunk(
     "product/fetchPopularProducts",
     async () => {
-        const response = await fetch(
-            `${import.meta.env.VITE_API_URL}products/popular`
-        );
-
-        return response.json();
+        const response = fetchPopularProductsService();
+        return response;
     }
 );
 

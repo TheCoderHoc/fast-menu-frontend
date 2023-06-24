@@ -6,9 +6,8 @@ import { isEmail } from "validator";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../../components/FormInput";
-import { fetchCart } from "../../redux/cartSlice";
 import checkoutSuccessImage from "../../assets/images/checkout-success.gif";
-import { emptyCart } from "../../redux/cartSlice";
+import { fetchCart, emptyCart } from "../../redux/cart.slice";
 
 const Checkout = () => {
     const [isSubmit, setSubmit] = useState(false);

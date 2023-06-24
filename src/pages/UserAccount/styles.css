@@ -1,18 +1,3 @@
-.user-account {
-    height: 100vh;
-    overflow: auto;
-    padding-top: 3rem;
-    padding: 5rem;
-}
-
-.user-account::-webkit-scrollbar{
-    display: none;
-}
-
-.user-account-title {
-    font-size: 2.2rem;
-}
-
 .user-account-section {
     border: 1px solid #bbb;
     border-radius: 2rem;
@@ -109,12 +94,6 @@
     flex-direction: column;
 }
 
-@media screen and (max-width: 768px){
-    .user-account {
-        padding: 2rem;
-    }
-}
-
 @media screen and (max-width: 500px) {
     .user-account-section-content{
         grid-template-columns: 1fr;
@@ -139,12 +118,5 @@
     .user-account-basic-info button {
         margin-left: initial;
         margin-top: 1rem;
-    }
-    
-}
-
-@media screen and (max-width: 350px){
-    .user-account{
-        padding: 1rem;
     }
 }

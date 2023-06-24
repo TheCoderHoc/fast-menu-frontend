@@ -9,14 +9,14 @@ import "swiper/css/effect-fade";
 import "swiper/css/bundle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import menuCategories from "../../../data/menuCategories";
-import SectionHeader from "../../../layouts/SectionHeader";
-import chefImage from "../../../assets/images/chef.png";
-import MealItem from "../../../layouts/MealItem";
-import { fetchPopularProducts } from "../../../redux/productSlice";
-import { fetchFavourites } from "../../../redux/favouriteSlice";
+import menuCategories from "../../data/menuCategories";
+import SectionHeader from "../../layouts/SectionHeader";
+import chefImage from "../../assets/images/chef.png";
+import MealItem from "../../layouts/MealItem";
+import { fetchPopularProducts } from "../../redux/product.slice";
+import { fetchFavourites } from "../../redux/favourite.slice";
 
-const UserDashboardHome = () => {
+const DashboardHome = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
     const auth = useSelector((state) => state.auth);
@@ -38,21 +38,19 @@ const UserDashboardHome = () => {
         // PREVENT FORM SUBMISSION
         e.preventDefault();
 
-        navigate(`/user/dashboard/menu?search=${searchQuery}`);
+        navigate(`/dashboard/menu?search=${searchQuery}`);
     };
 
     const handleCategoryClick = (categoryName) => {
         const category = categoryName.toLowerCase();
 
-        navigate(`/user/dashboard/menu?category=${category}`);
+        navigate(`/dashboard/menu?category=${category}`);
     };
 
     return (
         <div className="user-dashboard-home">
             <header className="user-dashboard-home-header">
-                <h1 className="user-dashboard-home-header-title">
-                    Welcome, {name}
-                </h1>
+                <h1 className="page-main-title">Welcome, {name}</h1>
 
                 <form
                     className="user-dashboard-home-form"
@@ -99,8 +97,8 @@ const UserDashboardHome = () => {
                     pagination={{ clickable: true }}
                     breakpoints={{
                         0: { slidesPerView: 2 },
-                        325: { slidesPerView: 4 },
-                        768: { slidesPerView: 5 },
+                        470: { slidesPerView: 3 },
+                        768: { slidesPerView: 3 },
                         968: { slidesPerView: 6 },
                     }}
                 >
@@ -119,7 +117,11 @@ const UserDashboardHome = () => {
             </section>
 
             <section className="user-dashboard-home-popular-dishes">
-                <SectionHeader title="Popular Dishes" ctaLabel="View all" />
+                <SectionHeader
+                    title="Popular Dishes"
+                    ctaLabel="View all"
+                    ctaLink="/dashboard/menu?filter=popular"
+                />
                 <ul className="user-dashboard-home-popular-dishes-list">
                     <Swiper
                         spaceBetween={10}
@@ -129,8 +131,10 @@ const UserDashboardHome = () => {
                         pagination={{ clickable: true }}
                         breakpoints={{
                             0: { slidesPerView: 1 },
-                            500: { slidesPerView: 2 },
-                            968: { slidesPerView: 3 },
+                            550: { slidesPerView: 2 },
+                            769: { slidesPerView: 1 },
+                            968: { slidesPerView: 2 },
+                            1050: { slidesPerView: 3 },
                         }}
                     >
                         {product.products.map((product) => (
@@ -143,7 +147,11 @@ const UserDashboardHome = () => {
             </section>
 
             <section className="user-dashboard-home-recent-orders">
-                <SectionHeader title="Recent Orders" ctaLabel="View all" />
+                <SectionHeader
+                    title="Recent Orders"
+                    ctaLabel="View all"
+                    ctaLink="/dashboard/order-history"
+                />
 
                 <p className="user-dashboard-home-recent-orders-empty-text">
                     You do not have any recent orders. Place an order on a
@@ -154,4 +162,4 @@ const UserDashboardHome = () => {
     );
 };
 
-export default UserDashboardHome;
+export default DashboardHome;

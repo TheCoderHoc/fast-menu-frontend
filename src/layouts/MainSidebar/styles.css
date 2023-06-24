@@ -1,7 +1,10 @@
 .main-sidebar {
     background-color: #fff;
     border-right: 1px solid var(--gray-color);
+    display: flex;
+    flex-direction: column;
     height: 100vh;
+    justify-content: space-between;
     left: 0;
     padding: 2.5rem;
     position: fixed;
@@ -50,6 +53,7 @@
 @media screen and (max-width: 768px) {
     .main-sidebar{
         border-right-color: transparent;
+        display: block;
     }
 }
 

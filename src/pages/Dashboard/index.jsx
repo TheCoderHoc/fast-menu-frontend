@@ -7,9 +7,9 @@ import { AiOutlineBars } from "react-icons/ai";
 import MainSidebar from "../../layouts/MainSidebar";
 import AltSidebar from "../../layouts/AltSidebar";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import { closeDrawer } from "../../redux/UISlice";
+import { closeDrawer } from "../../redux/UI.slice";
 
-const UserDashboard = () => {
+const Dashboard = () => {
     const isMatch = useMediaQuery("(max-width: 768px)");
     const [mainSidebarOpen, setMainSidebarOpen] = useState(false);
 
@@ -38,7 +38,7 @@ const UserDashboard = () => {
                     />
                 </div>
             ) : (
-                <MainSidebar />
+                <MainSidebar onHideMainSidebar={hideMainSidebar} />
             )}
 
             <main className="user-dashboard-content">
@@ -55,7 +55,7 @@ const UserDashboard = () => {
                     size="default"
                     width={250}
                 >
-                    <MainSidebar onHideDrawer={hideMainSidebar} />
+                    <MainSidebar onHideMainSidebar={hideMainSidebar} />
                 </Drawer>
             </div>
 
@@ -74,4 +74,4 @@ const UserDashboard = () => {
     );
 };
 
-export default UserDashboard;
+export default Dashboard;

@@ -1,45 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./styles.css";
 import { Spin } from "antd";
 import { BsTrash } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { deleteCartItem } from "../../redux/cartSlice";
+import { deleteCartItem } from "../../redux/cart.slice";
+import useFetchImage from "../../hooks/useFetchImage";
 
 const CartItem = ({ _id, name, quantity, price }) => {
-    const [imageSrc, setImageSrc] = useState("");
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
-
     const dispatch = useDispatch();
 
-    // FETCH THE CART ITEM FOOD IMAGE
-    useEffect(() => {
-        const fetchProductImage = async () => {
-            try {
-                const response = await fetch(
-                    `${import.meta.env.VITE_API_URL}products/${_id}/image`
-                );
-
-                const blob = await response.blob();
-
-                const imageUrl = URL.createObjectURL(blob);
-
-                setImageSrc(imageUrl);
-
-                setLoading(false);
-
-                setError("");
-            } catch (error) {
-                setLoading(false);
-
-                setError("Could not fetch image.");
-
-                console.log(error.message);
-            }
-        };
-
-        fetchProductImage();
-    }, []);
+    const [loading, error, imageSrc] = useFetchImage(
+        `${import.meta.env.VITE_API_URL}/products/${_id}/image`
+    );
 
     const handleDeleteCartItem = () => {
         dispatch(deleteCartItem(_id));

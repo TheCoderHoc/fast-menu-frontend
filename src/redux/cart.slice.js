@@ -1,4 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+    fetchCartService,
+    addToCartService,
+    deleteCartItemService,
+    emptyCartService,
+} from "../services/cart.services";
 
 const initialState = {
     loading: false,
@@ -110,62 +116,33 @@ const cartSlice = createSlice({
 });
 
 export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}cart`, {
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-    });
+    const response = fetchCartService();
 
-    return response.json();
+    return response;
 });
 
 export const addToCart = createAsyncThunk(
     "cart/addToCart",
     async (productId) => {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}cart`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            },
-            body: JSON.stringify({
-                productId,
-            }),
-        });
+        const response = addToCartService(productId);
 
-        return response.json();
+        return response;
     }
 );
 
 export const deleteCartItem = createAsyncThunk(
     "cart/deleteCartItem",
     async (productId) => {
-        const response = await fetch(
-            `${import.meta.env.VITE_API_URL}cart/${productId}`,
-            {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-                },
-            }
-        );
+        const response = deleteCartItemService(productId);
 
-        return response.json();
+        return response;
     }
 );
 
 export const emptyCart = createAsyncThunk("cart/emptyCart", async () => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}cart/`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-    });
+    const response = emptyCartService();
 
-    return response.json();
+    return response;
 });
 
 export default cartSlice.reducer;

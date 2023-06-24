@@ -6,7 +6,8 @@ import passwordValidator from "password-validator";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../../components/FormInput";
-import { setMessage } from "../../redux/authSlice";
+import { setMessage } from "../../redux/auth.slice";
+import { API_URL } from "../../constants/api";
 
 const Signup = ({ onChangeActiveTab }) => {
     const auth = useSelector((state) => state.auth);
@@ -17,7 +18,7 @@ const Signup = ({ onChangeActiveTab }) => {
 
     useEffect(() => {
         if (auth.user) {
-            navigate("/user/dashboard/home");
+            navigate("/dashboard/home");
         }
     }, [auth.user]);
 
@@ -109,20 +110,17 @@ const Signup = ({ onChangeActiveTab }) => {
 
     const signup = async ({ fullName, email, password }) => {
         try {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}auth/signup`,
-                {
-                    method: "POST",
-                    body: JSON.stringify({
-                        fullName,
-                        email,
-                        password,
-                    }),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
+            const response = await fetch(`${API_URL}/auth/signup`, {
+                method: "POST",
+                body: JSON.stringify({
+                    fullName,
+                    email,
+                    password,
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
 
             const { error, success } = await response.json();
 

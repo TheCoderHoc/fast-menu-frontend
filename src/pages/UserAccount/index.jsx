@@ -7,16 +7,18 @@ import { FiLogOut } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { isEmail } from "validator";
 import FormInput from "../../components/FormInput";
-import { setUser, updateUserInfo } from "../../redux/authSlice";
-import { setMessage, setIsUserUpdated } from "../../redux/authSlice";
-import { logout } from "../../redux/authSlice";
-import { closeDrawer } from "../../redux/UISlice";
+import {
+    setUser,
+    updateUserInfo,
+    logout,
+    setMessage,
+    setIsUserUpdated,
+} from "../../redux/auth.slice";
+import useFetchImage from "../../hooks/useFetchImage";
+import useAltSidebar from "../../hooks/useAltSidebar";
+import { API_URL } from "../../constants/api";
 
 const UserAccount = () => {
-    const [imageSrc, setImageSrc] = useState("");
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
-
     const [isModalOpen, setModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState("");
 
@@ -38,45 +40,21 @@ const UserAccount = () => {
         dispatch(logout(auth.user_id));
     };
 
-    // FETCH THE USER AVATAR
-    useEffect(() => {
-        const fetchUserAvatar = async () => {
-            try {
-                const response = await fetch(
-                    `${import.meta.env.VITE_API_URL}user/${
-                        auth.user._id
-                    }/avatar`
-                );
+    const [loading, error, imageSrc] = useFetchImage(
+        `${API_URL}/user/${auth.user._id}/avatar`,
+        auth.user
+    );
 
-                const blob = await response.blob();
-
-                const imageUrl = URL.createObjectURL(blob);
-
-                setImageSrc(imageUrl);
-
-                setLoading(false);
-
-                setError("");
-            } catch (error) {
-                setLoading(false);
-
-                setError("Could not fetch image.");
-
-                console.log(error.message);
-            }
-        };
-
-        fetchUserAvatar();
-    }, [auth.user]);
+    const [openAltSidebar, closeAltSidebar] = useAltSidebar();
 
     useEffect(() => {
-        dispatch(closeDrawer());
+        closeAltSidebar();
     }, []);
 
     return (
         <>
             <div className="user-account">
-                <h1 className="user-account-title">My Profile</h1>
+                <h1 className="page-main-title">Your Profile</h1>
 
                 <section className="user-account-basic-info user-account-section">
                     <Avatar size="large" alt="Dave Wilson" src={imageSrc} />
@@ -516,7 +494,7 @@ const UploadAvatarContent = ({ onHideModal }) => {
         name: "avatar",
         listType: "picture-circle",
         className: "upload-avatar",
-        action: `${import.meta.env.VITE_API_URL}user/avatar`,
+        action: `${import.meta.env.VITE_API_URL}/user/avatar`,
         maxCount: 1,
         showUploadList: false,
         headers: {

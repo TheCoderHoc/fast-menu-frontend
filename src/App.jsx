@@ -6,11 +6,15 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 import PrivateRoute from "./components/PrivateRoute";
 import Auth from "./pages/Auth";
-import UserDashboard from "./pages/UserDashboard";
-import UserDashboardHome from "./partials/Dashboard/UserDashboardHome";
-import Favourites from "./partials/Dashboard/Favourites";
-import FoodMenu from "./partials/Dashboard/FoodMenu";
-import UserAccount from "./partials/UserAccount";
+import Dashboard from "./pages/Dashboard";
+import DashboardHome from "./pages/DashboardHome";
+import FoodMenu from "./pages/FoodMenu";
+import Favourites from "./pages/Favourites";
+import OrderHistory from "./pages/OrderHistory";
+import Messages from "./pages/Messages";
+import Community from "./pages/Community";
+import Notifications from "./pages/Notifications";
+import UserAccount from "./pages/UserAccount";
 import Checkout from "./pages/Checkout";
 
 const App = () => {
@@ -18,12 +22,14 @@ const App = () => {
         <Provider store={store}>
             <Routes>
                 <Route path="/" element={<Navigate to="user/auth" />} />
-                <Route path="user/auth" element={<Auth />} />
+
+                <Route path="/auth" element={<Auth />} />
+
                 <Route
-                    path="user/dashboard"
+                    path="/dashboard"
                     element={
                         <PrivateRoute>
-                            <UserDashboard />
+                            <Dashboard />
                         </PrivateRoute>
                     }
                 >
@@ -31,10 +37,11 @@ const App = () => {
                         path="home"
                         element={
                             <PrivateRoute>
-                                <UserDashboardHome />
+                                <DashboardHome />
                             </PrivateRoute>
                         }
                     />
+
                     <Route
                         path="menu"
                         element={
@@ -43,6 +50,7 @@ const App = () => {
                             </PrivateRoute>
                         }
                     />
+
                     <Route
                         path="favourites"
                         element={
@@ -55,7 +63,7 @@ const App = () => {
                         path="order-history"
                         element={
                             <PrivateRoute>
-                                <h2>Order History</h2>
+                                <OrderHistory />
                             </PrivateRoute>
                         }
                     />
@@ -63,7 +71,7 @@ const App = () => {
                         path="messages"
                         element={
                             <PrivateRoute>
-                                <h2>Messages</h2>
+                                <Messages />
                             </PrivateRoute>
                         }
                     />
@@ -71,7 +79,7 @@ const App = () => {
                         path="community"
                         element={
                             <PrivateRoute>
-                                <h2>Community</h2>
+                                <Community />
                             </PrivateRoute>
                         }
                     />
@@ -79,7 +87,7 @@ const App = () => {
                         path="notifications"
                         element={
                             <PrivateRoute>
-                                <h2>Notifications</h2>
+                                <Notifications />
                             </PrivateRoute>
                         }
                     />

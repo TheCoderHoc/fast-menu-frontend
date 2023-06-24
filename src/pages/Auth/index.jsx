@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import { Button, Divider, Tabs } from "antd";
 import { FcGoogle } from "react-icons/fc";
@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import Logo from "../../components/Logo";
 import Signup from "../../layouts/Auth/Signup";
 import Login from "../../layouts/Auth/Login";
-import { setMessage } from "../../redux/authSlice";
+import { setMessage } from "../../redux/auth.slice";
 
 const Auth = () => {
     const auth = useSelector((state) => state.auth);

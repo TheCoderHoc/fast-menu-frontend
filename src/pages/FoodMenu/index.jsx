@@ -4,9 +4,9 @@ import { Select, Radio, Pagination, Button } from "antd";
 import { useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { AiOutlineSearch } from "react-icons/ai";
-import { fetchProducts } from "../../../redux/productSlice";
-import MealItem from "../../../layouts/MealItem";
-import menuCategories from "../../../data/menuCategories";
+import { fetchProducts } from "../../redux/product.slice";
+import MealItem from "../../layouts/MealItem";
+import menuCategories from "../../data/menuCategories";
 
 const FoodMenu = () => {
     const dispatch = useDispatch();
@@ -98,7 +98,7 @@ const FoodMenu = () => {
 
     return (
         <div className="food-menu">
-            <h1 className="food-menu-title">Our Menu</h1>
+            <h1 className="page-main-title">Our Menu</h1>
 
             <div className="food-menu-options">
                 <div className="food-menu-option">

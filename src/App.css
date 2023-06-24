@@ -89,6 +89,14 @@
     color: var(--primary-color) !important;
 }
 
+.page-main-title {
+    font-size: 2.2rem;
+}
+
+.icon-link:hover {
+    color: var(--primary-color);
+}
+
 @media screen and (max-width: 500px) {
     .ant-drawer-content-wrapper{
         width: 100% !important;

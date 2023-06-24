@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./styles.css";
 import { AiFillHeart } from "react-icons/ai";
 import { AiOutlinePlus } from "react-icons/ai";
-import { Button, Rate, Spin } from "antd";
+import { Button, Rate, Spin, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/cartSlice";
-import { openDrawer } from "../../redux/UISlice";
-import { toggleFavourite } from "../../redux/favouriteSlice";
+import { addToCart } from "../../redux/cart.slice";
+import { openDrawer } from "../../redux/UI.slice";
+import { toggleFavourite } from "../../redux/favourite.slice";
+import useFetchImage from "../../hooks/useFetchImage";
+import { API_URL } from "../../constants/api";
 
 const MealItem = ({ product }) => {
     const { _id, name, price, rating } = product;
 
-    const [imageSrc, setImageSrc] = useState("");
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
-
-    const UI = useSelector((state) => state.UI);
     const favourite = useSelector((state) => state.favourite);
 
     const isMealFav = favourite.favourites.items?.find(
@@ -24,34 +21,9 @@ const MealItem = ({ product }) => {
 
     const dispatch = useDispatch();
 
-    // FETCH THE PRODUCT IMAGE
-    useEffect(() => {
-        const fetchProductImage = async () => {
-            try {
-                const response = await fetch(
-                    `${import.meta.env.VITE_API_URL}products/${_id}/image`
-                );
-
-                const blob = await response.blob();
-
-                const imageUrl = URL.createObjectURL(blob);
-
-                setImageSrc(imageUrl);
-
-                setLoading(false);
-
-                setError("");
-            } catch (error) {
-                setLoading(false);
-
-                setError("Could not fetch image.");
-
-                console.log(error.message);
-            }
-        };
-
-        fetchProductImage();
-    }, []);
+    const [loading, error, imageSrc] = useFetchImage(
+        `${API_URL}/products/${_id}/image`
+    );
 
     const handleAddToCart = () => {
         dispatch(addToCart(_id));
@@ -74,7 +46,6 @@ const MealItem = ({ product }) => {
                             size={20}
                             color="red"
                             onClick={() => dispatch(toggleFavourite(_id))}
-                            className={heartIconClassName}
                         />
                     ) : (
                         <AiFillHeart
