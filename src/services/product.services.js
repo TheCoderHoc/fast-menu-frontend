@@ -1,6 +1,5 @@
 import { API_URL } from "../constants/api";
 
-
 export const fetchProductsService = async ({
     filter,
     sortBy,
