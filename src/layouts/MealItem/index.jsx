@@ -7,11 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cart.slice";
 import { openDrawer } from "../../redux/UI.slice";
 import { toggleFavourite } from "../../redux/favourite.slice";
-import useFetchImage from "../../hooks/useFetchImage";
-import { API_URL } from "../../constants/api";
 
 const MealItem = ({ product }) => {
-    const { _id, name, price, rating } = product;
+    const { _id, name, price, rating, image: imageSrc } = product;
 
     const favourite = useSelector((state) => state.favourite);
 
@@ -20,10 +18,6 @@ const MealItem = ({ product }) => {
     );
 
     const dispatch = useDispatch();
-
-    const [loading, error, imageSrc] = useFetchImage(
-        `${API_URL}/products/${_id}/image`
-    );
 
     const handleAddToCart = () => {
         dispatch(addToCart(_id));
@@ -56,17 +50,7 @@ const MealItem = ({ product }) => {
                     )}
                 </div>
 
-                {loading ? (
-                    <Spin size="large">Loading</Spin>
-                ) : (
-                    <img
-                        src={imageSrc}
-                        alt={name}
-                        className="meal-item-image"
-                    />
-                )}
-
-                {error}
+                <img src={imageSrc} alt={name} className="meal-item-image" />
             </header>
 
             <main className="meal-item-body">
